@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="osp-consumer" owner="programmer" organization="dubbox"/>
+	<!-- 
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+     -->
+	<dubbo:registry protocol="zookeeper" address="10.12.8.174:2181,10.12.8.175:2181,10.12.8.176:2181"/>
+    <!--uncomment this if you want to test dubbo's monitor-->
+    <!--<dubbo:monitor protocol="registry"/>-->
+
+    <dubbo:reference id="bidService" interface="com.alibaba.dubbo.demo.bid.BidService"/>
+    <dubbo:reference id="anotherUserRestService" interface="com.alibaba.dubbo.demo.user.facade.AnotherUserRestService"/>
+
+    <!-- directly connect to provider to simulate the access to non-dubbo rest services -->
+    <!--<dubbo:reference id="anotherUserRestService" interface="com.alibaba.dubbo.demo.user.facade.AnotherUserRestService" url="rest://localhost:8888/services/"/>-->
+<dubbo:reference id="ospAppencodeService" interface="com.osp.biz.service.IOspAppencodeService"/>
+
+<dubbo:reference id="ospContentStatService" interface="com.osp.biz.service.IOspContentStatService"/>
+
+
+<dubbo:reference id="ospContentPublishflagService" interface="com.osp.biz.service.IOspContentPublishflagService"/>
+
+
+<dubbo:reference id="ospContentPublishService" interface="com.osp.biz.service.IOspContentPublishService"/>
+
+
+<dubbo:reference id="tableWlanUpdateInfoService" interface="com.osp.biz.service.ITableWlanUpdateInfoService"/>
+
+
+<dubbo:reference id="tableVersionDownloadLogService" interface="com.osp.biz.service.ITableVersionDownloadLogService"/>
+
+
+<dubbo:reference id="tablePlatformVersionInfoService" interface="com.osp.biz.service.ITablePlatformVersionInfoService"/>
+
+
+<dubbo:reference id="tablePlatformInfoService" interface="com.osp.biz.service.ITablePlatformInfoService"/>
+
+
+<dubbo:reference id="tableChannelService" interface="com.osp.biz.service.ITableChannelService"/>
+
+
+<dubbo:reference id="tsequenceService" interface="com.osp.biz.service.ITsequenceService"/>
+
+
+<dubbo:reference id="troleRightService" interface="com.osp.biz.service.ITroleRightService"/>
+
+
+<dubbo:reference id="troleService" interface="com.osp.biz.service.ITroleService"/>
+
+
+<dubbo:reference id="trightService" interface="com.osp.biz.service.ITrightService"/>
+
+
+<dubbo:reference id="toprationLogService" interface="com.osp.biz.service.IToprationLogService"/>
+
+
+<dubbo:reference id="tassginRoleService" interface="com.osp.biz.service.ITassginRoleService"/>
+
+
+<dubbo:reference id="tadministratorsService" interface="com.osp.biz.service.ITadministratorsService"/>
+
+
+<dubbo:reference id="provinceService" interface="com.osp.biz.service.IProvinceService"/>
+
+
+<dubbo:reference id="ospUpdateMacLogService" interface="com.osp.biz.service.IOspUpdateMacLogService"/>
+
+
+<dubbo:reference id="ospTradetypeService" interface="com.osp.biz.service.IOspTradetypeService"/>
+
+
+<dubbo:reference id="ospTraderesultService" interface="com.osp.biz.service.IOspTraderesultService"/>
+
+
+<dubbo:reference id="ospTerminalprefixService" interface="com.osp.biz.service.IOspTerminalprefixService"/>
+
+
+<dubbo:reference id="ospTerminalonlineService" interface="com.osp.biz.service.IOspTerminalonlineService"/>
+
+
+<dubbo:reference id="ospTerminalgroupCatalogService" interface="com.osp.biz.service.IOspTerminalgroupCatalogService"/>
+
+
+<dubbo:reference id="ospTerminalgroupService" interface="com.osp.biz.service.IOspTerminalgroupService"/>
+
+
+<dubbo:reference id="ospSpService" interface="com.osp.biz.service.IOspSpService"/>
+
+
+<dubbo:reference id="ospServerconfigService" interface="com.osp.biz.service.IOspServerconfigService"/>
+
+
+<dubbo:reference id="ospSearchkeylogService" interface="com.osp.biz.service.IOspSearchkeylogService"/>
+
+
+<dubbo:reference id="ospSearchkeyService" interface="com.osp.biz.service.IOspSearchkeyService"/>
+
+
+<dubbo:reference id="ospPullcontenttoService" interface="com.osp.biz.service.IOspPullcontenttoService"/>
+
+
+<dubbo:reference id="ospPullcontentlogService" interface="com.osp.biz.service.IOspPullcontentlogService"/>
+
+
+<dubbo:reference id="ospPullcontentService" interface="com.osp.biz.service.IOspPullcontentService"/>
+
+
+<dubbo:reference id="ospPropertiesService" interface="com.osp.biz.service.IOspPropertiesService"/>
+
+
+<dubbo:reference id="ospPaybindService" interface="com.osp.biz.service.IOspPaybindService"/>
+
+
+<dubbo:reference id="ospOrderitemService" interface="com.osp.biz.service.IOspOrderitemService"/>
+
+
+<dubbo:reference id="ospOrderService" interface="com.osp.biz.service.IOspOrderService"/>
+
+
+<dubbo:reference id="ospMemberactionlogService" interface="com.osp.biz.service.IOspMemberactionlogService"/>
+
+
+<dubbo:reference id="ospMemberService" interface="com.osp.biz.service.IOspMemberService"/>
+
+
+<dubbo:reference id="ospErrorcodeService" interface="com.osp.biz.service.IOspErrorcodeService"/>
+
+
+<dubbo:reference id="ospDeviceService" interface="com.osp.biz.service.IOspDeviceService"/>
+
+
+<dubbo:reference id="ospDebitcreditService" interface="com.osp.biz.service.IOspDebitcreditService"/>
+
+
+<dubbo:reference id="ospContentrelationService" interface="com.osp.biz.service.IOspContentrelationService"/>
+
+
+<dubbo:reference id="ospContentauditlogService" interface="com.osp.biz.service.IOspContentauditlogService"/>
+
+
+<dubbo:reference id="ospContentactionlogService" interface="com.osp.biz.service.IOspContentactionlogService"/>
+
+
+<dubbo:reference id="ospContentactionService" interface="com.osp.biz.service.IOspContentactionService"/>
+
+
+<dubbo:reference id="ospContentService" interface="com.osp.biz.service.IOspContentService"/>
+
+
+<dubbo:reference id="ospCatalogcontentService" interface="com.osp.biz.service.IOspCatalogcontentService"/>
+
+
+<dubbo:reference id="ospCatalogactionlogService" interface="com.osp.biz.service.IOspCatalogactionlogService"/>
+
+
+<dubbo:reference id="ospCatalogService" interface="com.osp.biz.service.IOspCatalogService"/>
+
+<dubbo:reference id="keyToolService" interface="com.aspire.wlan.key.service.IKeyToolService"/>
+
+</beans>

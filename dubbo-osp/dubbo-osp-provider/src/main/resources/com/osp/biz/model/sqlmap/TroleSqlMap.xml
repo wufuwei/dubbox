@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Trole">
+
+    <typeAlias alias="trole" type="com.osp.biz.model.Trole"/>
+
+    <resultMap id="troleResult" class="trole">
+        <result property="roleId" column="role_id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="roleDesc" column="role_desc"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	role_id ,
+        	role_name ,
+        	role_desc 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="trole">
+    <![CDATA[
+        INSERT INTO
+        t_role (
+        	role_id ,
+        	role_name ,
+        	role_desc 
+        ) VALUES (
+          NULL
+        ,
+        	#roleName# 
+        ,
+        	#roleDesc# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="roleId" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="trole">
+    <![CDATA[
+        UPDATE t_role SET
+	        role_name = #roleName# ,
+	        role_desc = #roleDesc# 
+        WHERE 
+	        role_id = #roleId# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="roleName">
+	              role_name = #roleName#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="roleDesc">
+	              role_desc = #roleDesc#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="trole">
+
+        UPDATE t_role SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        role_id = #roleId# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Integer">
+    <![CDATA[
+        delete from t_role where
+        role_id = #roleId# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="troleResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_role 
+	        where 
+		        role_id = #roleId# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="roleId">
+	             role_id = #roleId#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="roleName">
+	             role_name = #roleName#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="roleDesc">
+	             role_desc = #roleDesc#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from t_role
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="troleResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_role 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        role_id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="troleResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_role 
+	    ]]>
+	        order by 
+		        role_id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="troleResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_role 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        role_id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

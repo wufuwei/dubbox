@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TablePlatformVersionInfo">
+
+    <typeAlias alias="tablePlatformVersionInfo" type="com.osp.biz.model.TablePlatformVersionInfo"/>
+
+    <resultMap id="tablePlatformVersionInfoResult" class="tablePlatformVersionInfo">
+        <result property="id" column="id"/>
+        <result property="platform" column="platform"/>
+        <result property="version" column="version"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	platform ,
+        	version ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="tablePlatformVersionInfo">
+    <![CDATA[
+        INSERT INTO
+        table_platform_version_info (
+        	id ,
+        	platform ,
+        	version ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+        ) VALUES (
+          NULL
+        ,
+        	#platform# 
+        ,
+        	#version# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="tablePlatformVersionInfo">
+    <![CDATA[
+        UPDATE table_platform_version_info SET
+	        platform = #platform# ,
+	        version = #version# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="platform">
+	              platform = #platform#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="version">
+	              version = #version#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="tablePlatformVersionInfo">
+
+        UPDATE table_platform_version_info SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Integer">
+    <![CDATA[
+        delete from table_platform_version_info where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="tablePlatformVersionInfoResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_platform_version_info 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="platform">
+	             platform = #platform#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="version">
+	             version = #version#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from table_platform_version_info
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="tablePlatformVersionInfoResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_platform_version_info 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="tablePlatformVersionInfoResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_platform_version_info 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="tablePlatformVersionInfoResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_platform_version_info 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

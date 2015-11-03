@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspOrderitem">
+
+    <typeAlias alias="ospOrderitem" type="com.osp.biz.model.OspOrderitem"/>
+
+    <resultMap id="ospOrderitemResult" class="ospOrderitem">
+        <result property="id" column="id"/>
+        <result property="orderid" column="orderid"/>
+        <result property="contentid" column="contentid"/>
+        <result property="contentinnercode" column="contentinnercode"/>
+        <result property="contentname" column="contentname"/>
+        <result property="price" column="price"/>
+        <result property="discount" column="discount"/>
+        <result property="discountprice" column="discountprice"/>
+        <result property="count" column="count"/>
+        <result property="amount" column="amount"/>
+        <result property="memo" column="memo"/>
+        <result property="prop1" column="prop1"/>
+        <result property="prop2" column="prop2"/>
+        <result property="prop3" column="prop3"/>
+        <result property="prop4" column="prop4"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="orderamount" column="orderamount"/>
+        <result property="mobilelogo" column="mobilelogo"/>
+        <result property="alias" column="alias"/>
+        <result property="contentalias" column="contentalias"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	orderid ,
+        	contentid ,
+        	contentinnercode ,
+        	contentname ,
+        	price ,
+        	discount ,
+        	discountprice ,
+        	count ,
+        	amount ,
+        	memo ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate ,
+        	orderamount ,
+        	mobilelogo ,
+        	alias ,
+        	contentalias 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospOrderitem">
+    <![CDATA[
+        INSERT INTO
+        osp_orderitem (
+        	id ,
+        	orderid ,
+        	contentid ,
+        	contentinnercode ,
+        	contentname ,
+        	price ,
+        	discount ,
+        	discountprice ,
+        	count ,
+        	amount ,
+        	memo ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate ,
+        	orderamount ,
+        	mobilelogo ,
+        	alias ,
+        	contentalias 
+        ) VALUES (
+          NULL
+        ,
+        	#orderid# 
+        ,
+        	#contentid# 
+        ,
+        	#contentinnercode# 
+        ,
+        	#contentname# 
+        ,
+        	#price# 
+        ,
+        	#discount# 
+        ,
+        	#discountprice# 
+        ,
+        	#count# 
+        ,
+        	#amount# 
+        ,
+        	#memo# 
+        ,
+        	#prop1# 
+        ,
+        	#prop2# 
+        ,
+        	#prop3# 
+        ,
+        	#prop4# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        ,
+        	#orderamount# 
+        ,
+        	#mobilelogo# 
+        ,
+        	#alias# 
+        ,
+        	#contentalias# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospOrderitem">
+    <![CDATA[
+        UPDATE osp_orderitem SET
+	        orderid = #orderid# ,
+	        contentid = #contentid# ,
+	        contentinnercode = #contentinnercode# ,
+	        contentname = #contentname# ,
+	        price = #price# ,
+	        discount = #discount# ,
+	        discountprice = #discountprice# ,
+	        count = #count# ,
+	        amount = #amount# ,
+	        memo = #memo# ,
+	        prop1 = #prop1# ,
+	        prop2 = #prop2# ,
+	        prop3 = #prop3# ,
+	        prop4 = #prop4# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# ,
+	        orderamount = #orderamount# ,
+	        mobilelogo = #mobilelogo# ,
+	        alias = #alias# ,
+	        contentalias = #contentalias# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="orderid">
+	              orderid = #orderid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentid">
+	              contentid = #contentid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentinnercode">
+	              contentinnercode = #contentinnercode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentname">
+	              contentname = #contentname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="price">
+	              price = #price#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="discount">
+	              discount = #discount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="discountprice">
+	              discountprice = #discountprice#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="count">
+	              count = #count#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="amount">
+	              amount = #amount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="memo">
+	              memo = #memo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop1">
+	              prop1 = #prop1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop2">
+	              prop2 = #prop2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop3">
+	              prop3 = #prop3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop4">
+	              prop4 = #prop4#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderamount">
+	              orderamount = #orderamount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="mobilelogo">
+	              mobilelogo = #mobilelogo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="alias">
+	              alias = #alias#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentalias">
+	              contentalias = #contentalias#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospOrderitem">
+
+        UPDATE osp_orderitem SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_orderitem where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospOrderitemResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_orderitem 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderid">
+	             orderid = #orderid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentid">
+	             contentid = #contentid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentinnercode">
+	             contentinnercode = #contentinnercode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentname">
+	             contentname = #contentname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="price">
+	             price = #price#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="discount">
+	             discount = #discount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="discountprice">
+	             discountprice = #discountprice#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="count">
+	             count = #count#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="amount">
+	             amount = #amount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="memo">
+	             memo = #memo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop1">
+	             prop1 = #prop1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop2">
+	             prop2 = #prop2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop3">
+	             prop3 = #prop3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop4">
+	             prop4 = #prop4#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderamount">
+	             orderamount = #orderamount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="mobilelogo">
+	             mobilelogo = #mobilelogo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="alias">
+	             alias = #alias#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentalias">
+	             contentalias = #contentalias#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_orderitem
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospOrderitemResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_orderitem 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospOrderitemResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_orderitem 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospOrderitemResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_orderitem 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

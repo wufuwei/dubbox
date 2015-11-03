@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspTradetype">
+
+    <typeAlias alias="ospTradetype" type="com.osp.biz.model.OspTradetype"/>
+
+    <resultMap id="ospTradetypeResult" class="ospTradetype">
+        <result property="id" column="id"/>
+        <result property="tradetype" column="tradetype"/>
+        <result property="typename" column="typename"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	tradetype ,
+        	typename ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospTradetype">
+    <![CDATA[
+        INSERT INTO
+        osp_tradetype (
+        	id ,
+        	tradetype ,
+        	typename ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+        ) VALUES (
+          NULL
+        ,
+        	#tradetype# 
+        ,
+        	#typename# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospTradetype">
+    <![CDATA[
+        UPDATE osp_tradetype SET
+	        tradetype = #tradetype# ,
+	        typename = #typename# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="tradetype">
+	              tradetype = #tradetype#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="typename">
+	              typename = #typename#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospTradetype">
+
+        UPDATE osp_tradetype SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_tradetype where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospTradetypeResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_tradetype 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradetype">
+	             tradetype = #tradetype#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="typename">
+	             typename = #typename#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_tradetype
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospTradetypeResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_tradetype 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+    <select id="getByTradetype" resultMap="ospTradetypeResult" parameterClass="java.lang.String">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_tradetype where tradetype = #tradetype#
+	    ]]>
+    </select>
+    
+	
+	
+	<select id="findAll" resultMap="ospTradetypeResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_tradetype 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospTradetypeResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_tradetype 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

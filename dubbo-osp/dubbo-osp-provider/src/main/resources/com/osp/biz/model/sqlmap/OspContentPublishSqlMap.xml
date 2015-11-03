@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspContentPublish">
+
+    <typeAlias alias="ospContentPublish" type="com.osp.biz.model.OspContentPublish"/>
+
+    <resultMap id="ospContentPublishResult" class="ospContentPublish">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="osenv" column="osenv"/>
+        <result property="spname" column="spname"/>
+        <result property="icpcode" column="icpcode"/>
+        <result property="icpservid" column="icpservid"/>
+        <result property="version" column="version"/>
+        <result property="apppackage" column="apppackage"/>
+        <result property="platform" column="platform"/>
+        <result property="filesize" column="filesize"/>
+        <result property="filemd5" column="filemd5"/>
+        <result property="enforceflag" column="enforceflag"/>
+        <result property="downloadurl" column="downloadurl"/>
+        <result property="filename" column="filename"/>
+        <result property="alias" column="alias"/>
+        <result property="summary" column="summary"/>
+        <result property="memo" column="memo"/>
+        <result property="content" column="content"/>
+        <result property="mobilelogo" column="mobilelogo"/>
+        <result property="wwwlogo" column="wwwlogo"/>
+        <result property="adimage" column="adimage"/>
+        <result property="image0" column="image0"/>
+        <result property="image1" column="image1"/>
+        <result property="image2" column="image2"/>
+        <result property="image3" column="image3"/>
+        <result property="keyword" column="keyword"/>
+        <result property="finedate" column="finedate"/>
+        <result property="fineflag" column="fineflag"/>
+        <result property="desktopdate" column="desktopdate"/>
+        <result property="desktopflag" column="desktopflag"/>
+        <result property="topdate" column="topdate"/>
+        <result property="topflag" column="topflag"/>
+        <result property="recommenddate" column="recommenddate"/>
+        <result property="recommendflag" column="recommendflag"/>
+        <result property="addate" column="addate"/>
+        <result property="adflag" column="adflag"/>
+        <result property="publishflag" column="publishflag"/>
+        <result property="publishdate" column="publishdate"/>
+        <result property="downlinedate" column="downlinedate"/>
+        <result property="status" column="status"/>
+        <result property="pricetype" column="pricetype"/>
+        <result property="orderflag" column="orderflag"/>
+        <result property="marketprice" column="marketprice"/>
+        <result property="price" column="price"/>
+        <result property="discount" column="discount"/>
+        <result property="discountprice" column="discountprice"/>
+        <result property="memberprice" column="memberprice"/>
+        <result property="vipprice" column="vipprice"/>
+        <result property="effectdate" column="effectdate"/>
+        <result property="unit" column="unit"/>
+        <result property="prop1" column="prop1"/>
+        <result property="prop2" column="prop2"/>
+        <result property="prop3" column="prop3"/>
+        <result property="prop4" column="prop4"/>
+        <result property="prop5" column="prop5"/>
+        <result property="prop6" column="prop6"/>
+        <result property="prop7" column="prop7"/>
+        <result property="deleteflag" column="deleteflag"/>
+        <result property="deletedate" column="deletedate"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="contentinnercode" column="contentinnercode"/>
+        <result property="daydownloadtimes" column="daydownloadtimes"/>
+        <result property="weekdownloadtimes" column="weekdownloadtimes"/>
+        <result property="monthdownloadtimes" column="monthdownloadtimes"/>
+        <result property="downloadtimes" column="downloadtimes"/>
+        <result property="daysearchtimes" column="daysearchtimes"/>
+        <result property="weeksearchtimes" column="weeksearchtimes"/>
+        <result property="monthsearchtimes" column="monthsearchtimes"/>
+        <result property="searchtimes" column="searchtimes"/>
+        <result property="dayscantimes" column="dayscantimes"/>
+        <result property="weekscantimes" column="weekscantimes"/>
+        <result property="monthscantimes" column="monthscantimes"/>
+        <result property="scantimes" column="scantimes"/>
+        <result property="dayordertimes" column="dayordertimes"/>
+        <result property="weekordertimes" column="weekordertimes"/>
+        <result property="monthordertimes" column="monthordertimes"/>
+        <result property="ordertimes" column="ordertimes"/>
+        <result property="daycommenttimes" column="daycommenttimes"/>
+        <result property="weekcommenttimes" column="weekcommenttimes"/>
+        <result property="monthcommenttimes" column="monthcommenttimes"/>
+        <result property="commenttimes" column="commenttimes"/>
+        <result property="daymarktimes" column="daymarktimes"/>
+        <result property="weekmarktimes" column="weekmarktimes"/>
+        <result property="monthmarktimes" column="monthmarktimes"/>
+        <result property="marktimes" column="marktimes"/>
+        <result property="dayscoretimes" column="dayscoretimes"/>
+        <result property="weekscoretimes" column="weekscoretimes"/>
+        <result property="monthscoretimes" column="monthscoretimes"/>
+        <result property="scoretimes" column="scoretimes"/>
+        <result property="daycommendtimes" column="daycommendtimes"/>
+        <result property="weekcommendtimes" column="weekcommendtimes"/>
+        <result property="monthcommendtimes" column="monthcommendtimes"/>
+        <result property="commendtimes" column="commendtimes"/>
+        <result property="daycollecttimes" column="daycollecttimes"/>
+        <result property="weekcollecttimes" column="weekcollecttimes"/>
+        <result property="monthcollecttimes" column="monthcollecttimes"/>
+        <result property="collecttimes" column="collecttimes"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	name ,
+        	osenv ,
+        	spname ,
+        	icpcode ,
+        	icpservid ,
+        	version ,
+        	apppackage ,
+        	platform ,
+        	filesize ,
+        	filemd5 ,
+        	enforceflag ,
+        	downloadurl ,
+        	filename ,
+        	alias ,
+        	summary ,
+        	memo ,
+        	content ,
+        	mobilelogo ,
+        	wwwlogo ,
+        	adimage ,
+        	image0 ,
+        	image1 ,
+        	image2 ,
+        	image3 ,
+        	keyword ,
+        	finedate ,
+        	fineflag ,
+        	desktopdate ,
+        	desktopflag ,
+        	topdate ,
+        	topflag ,
+        	recommenddate ,
+        	recommendflag ,
+        	addate ,
+        	adflag ,
+        	publishflag ,
+        	publishdate ,
+        	downlinedate ,
+        	status ,
+        	pricetype ,
+        	orderflag ,
+        	marketprice ,
+        	price ,
+        	discount ,
+        	discountprice ,
+        	memberprice ,
+        	vipprice ,
+        	effectdate ,
+        	unit ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 ,
+        	prop5 ,
+        	prop6 ,
+        	prop7 ,
+        	deleteflag ,
+        	deletedate ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate ,
+        	contentinnercode ,
+        	daydownloadtimes ,
+        	weekdownloadtimes ,
+        	monthdownloadtimes ,
+        	downloadtimes ,
+        	daysearchtimes ,
+        	weeksearchtimes ,
+        	monthsearchtimes ,
+        	searchtimes ,
+        	dayscantimes ,
+        	weekscantimes ,
+        	monthscantimes ,
+        	scantimes ,
+        	dayordertimes ,
+        	weekordertimes ,
+        	monthordertimes ,
+        	ordertimes ,
+        	daycommenttimes ,
+        	weekcommenttimes ,
+        	monthcommenttimes ,
+        	commenttimes ,
+        	daymarktimes ,
+        	weekmarktimes ,
+        	monthmarktimes ,
+        	marktimes ,
+        	dayscoretimes ,
+        	weekscoretimes ,
+        	monthscoretimes ,
+        	scoretimes ,
+        	daycommendtimes ,
+        	weekcommendtimes ,
+        	monthcommendtimes ,
+        	commendtimes ,
+        	daycollecttimes ,
+        	weekcollecttimes ,
+        	monthcollecttimes ,
+        	collecttimes 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospContentPublish">
+    <![CDATA[
+        INSERT INTO
+        osp_content_publish (
+        	id ,
+        	name ,
+        	osenv ,
+        	spname ,
+        	icpcode ,
+        	icpservid ,
+        	version ,
+        	apppackage ,
+        	platform ,
+        	filesize ,
+        	filemd5 ,
+        	enforceflag ,
+        	downloadurl ,
+        	filename ,
+        	alias ,
+        	summary ,
+        	memo ,
+        	content ,
+        	mobilelogo ,
+        	wwwlogo ,
+        	adimage ,
+        	image0 ,
+        	image1 ,
+        	image2 ,
+        	image3 ,
+        	keyword ,
+        	finedate ,
+        	fineflag ,
+        	desktopdate ,
+        	desktopflag ,
+        	topdate ,
+        	topflag ,
+        	recommenddate ,
+        	recommendflag ,
+        	addate ,
+        	adflag ,
+        	publishflag ,
+        	publishdate ,
+        	downlinedate ,
+        	status ,
+        	pricetype ,
+        	orderflag ,
+        	marketprice ,
+        	price ,
+        	discount ,
+        	discountprice ,
+        	memberprice ,
+        	vipprice ,
+        	effectdate ,
+        	unit ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 ,
+        	prop5 ,
+        	prop6 ,
+        	prop7 ,
+        	deleteflag ,
+        	deletedate ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate ,
+        	contentinnercode ,
+        	daydownloadtimes ,
+        	weekdownloadtimes ,
+        	monthdownloadtimes ,
+        	downloadtimes ,
+        	daysearchtimes ,
+        	weeksearchtimes ,
+        	monthsearchtimes ,
+        	searchtimes ,
+        	dayscantimes ,
+        	weekscantimes ,
+        	monthscantimes ,
+        	scantimes ,
+        	dayordertimes ,
+        	weekordertimes ,
+        	monthordertimes ,
+        	ordertimes ,
+        	daycommenttimes ,
+        	weekcommenttimes ,
+        	monthcommenttimes ,
+        	commenttimes ,
+        	daymarktimes ,
+        	weekmarktimes ,
+        	monthmarktimes ,
+        	marktimes ,
+        	dayscoretimes ,
+        	weekscoretimes ,
+        	monthscoretimes ,
+        	scoretimes ,
+        	daycommendtimes ,
+        	weekcommendtimes ,
+        	monthcommendtimes ,
+        	commendtimes ,
+        	daycollecttimes ,
+        	weekcollecttimes ,
+        	monthcollecttimes ,
+        	collecttimes 
+        ) VALUES (
+        	#id# 
+        ,
+        	#name# 
+        ,
+        	#osenv# 
+        ,
+        	#spname# 
+        ,
+        	#icpcode# 
+        ,
+        	#icpservid# 
+        ,
+        	#version# 
+        ,
+        	#apppackage# 
+        ,
+        	#platform# 
+        ,
+        	#filesize# 
+        ,
+        	#filemd5# 
+        ,
+        	#enforceflag# 
+        ,
+        	#downloadurl# 
+        ,
+        	#filename# 
+        ,
+        	#alias# 
+        ,
+        	#summary# 
+        ,
+        	#memo# 
+        ,
+        	#content# 
+        ,
+        	#mobilelogo# 
+        ,
+        	#wwwlogo# 
+        ,
+        	#adimage# 
+        ,
+        	#image0# 
+        ,
+        	#image1# 
+        ,
+        	#image2# 
+        ,
+        	#image3# 
+        ,
+        	#keyword# 
+        ,
+        	#finedate# 
+        ,
+        	#fineflag# 
+        ,
+        	#desktopdate# 
+        ,
+        	#desktopflag# 
+        ,
+        	#topdate# 
+        ,
+        	#topflag# 
+        ,
+        	#recommenddate# 
+        ,
+        	#recommendflag# 
+        ,
+        	#addate# 
+        ,
+        	#adflag# 
+        ,
+        	#publishflag# 
+        ,
+        	#publishdate# 
+        ,
+        	#downlinedate# 
+        ,
+        	#status# 
+        ,
+        	#pricetype# 
+        ,
+        	#orderflag# 
+        ,
+        	#marketprice# 
+        ,
+        	#price# 
+        ,
+        	#discount# 
+        ,
+        	#discountprice# 
+        ,
+        	#memberprice# 
+        ,
+        	#vipprice# 
+        ,
+        	#effectdate# 
+        ,
+        	#unit# 
+        ,
+        	#prop1# 
+        ,
+        	#prop2# 
+        ,
+        	#prop3# 
+        ,
+        	#prop4# 
+        ,
+        	#prop5# 
+        ,
+        	#prop6# 
+        ,
+        	#prop7# 
+        ,
+        	#deleteflag# 
+        ,
+        	#deletedate# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        ,
+        	#contentinnercode# 
+        ,
+        	#daydownloadtimes# 
+        ,
+        	#weekdownloadtimes# 
+        ,
+        	#monthdownloadtimes# 
+        ,
+        	#downloadtimes# 
+        ,
+        	#daysearchtimes# 
+        ,
+        	#weeksearchtimes# 
+        ,
+        	#monthsearchtimes# 
+        ,
+        	#searchtimes# 
+        ,
+        	#dayscantimes# 
+        ,
+        	#weekscantimes# 
+        ,
+        	#monthscantimes# 
+        ,
+        	#scantimes# 
+        ,
+        	#dayordertimes# 
+        ,
+        	#weekordertimes# 
+        ,
+        	#monthordertimes# 
+        ,
+        	#ordertimes# 
+        ,
+        	#daycommenttimes# 
+        ,
+        	#weekcommenttimes# 
+        ,
+        	#monthcommenttimes# 
+        ,
+        	#commenttimes# 
+        ,
+        	#daymarktimes# 
+        ,
+        	#weekmarktimes# 
+        ,
+        	#monthmarktimes# 
+        ,
+        	#marktimes# 
+        ,
+        	#dayscoretimes# 
+        ,
+        	#weekscoretimes# 
+        ,
+        	#monthscoretimes# 
+        ,
+        	#scoretimes# 
+        ,
+        	#daycommendtimes# 
+        ,
+        	#weekcommendtimes# 
+        ,
+        	#monthcommendtimes# 
+        ,
+        	#commendtimes# 
+        ,
+        	#daycollecttimes# 
+        ,
+        	#weekcollecttimes# 
+        ,
+        	#monthcollecttimes# 
+        ,
+        	#collecttimes# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospContentPublish">
+    <![CDATA[
+        UPDATE osp_content_publish SET
+	        id = #id# ,
+	        name = #name# ,
+	        osenv = #osenv# ,
+	        spname = #spname# ,
+	        icpcode = #icpcode# ,
+	        icpservid = #icpservid# ,
+	        version = #version# ,
+	        apppackage = #apppackage# ,
+	        platform = #platform# ,
+	        filesize = #filesize# ,
+	        filemd5 = #filemd5# ,
+	        enforceflag = #enforceflag# ,
+	        downloadurl = #downloadurl# ,
+	        filename = #filename# ,
+	        alias = #alias# ,
+	        summary = #summary# ,
+	        memo = #memo# ,
+	        content = #content# ,
+	        mobilelogo = #mobilelogo# ,
+	        wwwlogo = #wwwlogo# ,
+	        adimage = #adimage# ,
+	        image0 = #image0# ,
+	        image1 = #image1# ,
+	        image2 = #image2# ,
+	        image3 = #image3# ,
+	        keyword = #keyword# ,
+	        finedate = #finedate# ,
+	        fineflag = #fineflag# ,
+	        desktopdate = #desktopdate# ,
+	        desktopflag = #desktopflag# ,
+	        topdate = #topdate# ,
+	        topflag = #topflag# ,
+	        recommenddate = #recommenddate# ,
+	        recommendflag = #recommendflag# ,
+	        addate = #addate# ,
+	        adflag = #adflag# ,
+	        publishflag = #publishflag# ,
+	        publishdate = #publishdate# ,
+	        downlinedate = #downlinedate# ,
+	        status = #status# ,
+	        pricetype = #pricetype# ,
+	        orderflag = #orderflag# ,
+	        marketprice = #marketprice# ,
+	        price = #price# ,
+	        discount = #discount# ,
+	        discountprice = #discountprice# ,
+	        memberprice = #memberprice# ,
+	        vipprice = #vipprice# ,
+	        effectdate = #effectdate# ,
+	        unit = #unit# ,
+	        prop1 = #prop1# ,
+	        prop2 = #prop2# ,
+	        prop3 = #prop3# ,
+	        prop4 = #prop4# ,
+	        prop5 = #prop5# ,
+	        prop6 = #prop6# ,
+	        prop7 = #prop7# ,
+	        deleteflag = #deleteflag# ,
+	        deletedate = #deletedate# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# ,
+	        contentinnercode = #contentinnercode# ,
+	        daydownloadtimes = #daydownloadtimes# ,
+	        weekdownloadtimes = #weekdownloadtimes# ,
+	        monthdownloadtimes = #monthdownloadtimes# ,
+	        downloadtimes = #downloadtimes# ,
+	        daysearchtimes = #daysearchtimes# ,
+	        weeksearchtimes = #weeksearchtimes# ,
+	        monthsearchtimes = #monthsearchtimes# ,
+	        searchtimes = #searchtimes# ,
+	        dayscantimes = #dayscantimes# ,
+	        weekscantimes = #weekscantimes# ,
+	        monthscantimes = #monthscantimes# ,
+	        scantimes = #scantimes# ,
+	        dayordertimes = #dayordertimes# ,
+	        weekordertimes = #weekordertimes# ,
+	        monthordertimes = #monthordertimes# ,
+	        ordertimes = #ordertimes# ,
+	        daycommenttimes = #daycommenttimes# ,
+	        weekcommenttimes = #weekcommenttimes# ,
+	        monthcommenttimes = #monthcommenttimes# ,
+	        commenttimes = #commenttimes# ,
+	        daymarktimes = #daymarktimes# ,
+	        weekmarktimes = #weekmarktimes# ,
+	        monthmarktimes = #monthmarktimes# ,
+	        marktimes = #marktimes# ,
+	        dayscoretimes = #dayscoretimes# ,
+	        weekscoretimes = #weekscoretimes# ,
+	        monthscoretimes = #monthscoretimes# ,
+	        scoretimes = #scoretimes# ,
+	        daycommendtimes = #daycommendtimes# ,
+	        weekcommendtimes = #weekcommendtimes# ,
+	        monthcommendtimes = #monthcommendtimes# ,
+	        commendtimes = #commendtimes# ,
+	        daycollecttimes = #daycollecttimes# ,
+	        weekcollecttimes = #weekcollecttimes# ,
+	        monthcollecttimes = #monthcollecttimes# ,
+	        collecttimes = #collecttimes# 
+        WHERE 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="id">
+	              id = #id#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="name">
+	              name = #name#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="osenv">
+	              osenv = #osenv#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="spname">
+	              spname = #spname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="icpcode">
+	              icpcode = #icpcode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="icpservid">
+	              icpservid = #icpservid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="version">
+	              version = #version#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="apppackage">
+	              apppackage = #apppackage#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="platform">
+	              platform = #platform#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="filesize">
+	              filesize = #filesize#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="filemd5">
+	              filemd5 = #filemd5#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="enforceflag">
+	              enforceflag = #enforceflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="downloadurl">
+	              downloadurl = #downloadurl#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="filename">
+	              filename = #filename#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="alias">
+	              alias = #alias#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="summary">
+	              summary = #summary#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="memo">
+	              memo = #memo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="content">
+	              content = #content#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="mobilelogo">
+	              mobilelogo = #mobilelogo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="wwwlogo">
+	              wwwlogo = #wwwlogo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="adimage">
+	              adimage = #adimage#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="image0">
+	              image0 = #image0#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="image1">
+	              image1 = #image1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="image2">
+	              image2 = #image2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="image3">
+	              image3 = #image3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="keyword">
+	              keyword = #keyword#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="finedate">
+	              finedate = #finedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="fineflag">
+	              fineflag = #fineflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="desktopdate">
+	              desktopdate = #desktopdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="desktopflag">
+	              desktopflag = #desktopflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="topdate">
+	              topdate = #topdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="topflag">
+	              topflag = #topflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="recommenddate">
+	              recommenddate = #recommenddate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="recommendflag">
+	              recommendflag = #recommendflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="addate">
+	              addate = #addate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="adflag">
+	              adflag = #adflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="publishflag">
+	              publishflag = #publishflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="publishdate">
+	              publishdate = #publishdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="downlinedate">
+	              downlinedate = #downlinedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="status">
+	              status = #status#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="pricetype">
+	              pricetype = #pricetype#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderflag">
+	              orderflag = #orderflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="marketprice">
+	              marketprice = #marketprice#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="price">
+	              price = #price#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="discount">
+	              discount = #discount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="discountprice">
+	              discountprice = #discountprice#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="memberprice">
+	              memberprice = #memberprice#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="vipprice">
+	              vipprice = #vipprice#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="effectdate">
+	              effectdate = #effectdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="unit">
+	              unit = #unit#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop1">
+	              prop1 = #prop1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop2">
+	              prop2 = #prop2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop3">
+	              prop3 = #prop3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop4">
+	              prop4 = #prop4#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop5">
+	              prop5 = #prop5#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop6">
+	              prop6 = #prop6#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop7">
+	              prop7 = #prop7#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="deleteflag">
+	              deleteflag = #deleteflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="deletedate">
+	              deletedate = #deletedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentinnercode">
+	              contentinnercode = #contentinnercode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daydownloadtimes">
+	              daydownloadtimes = #daydownloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekdownloadtimes">
+	              weekdownloadtimes = #weekdownloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthdownloadtimes">
+	              monthdownloadtimes = #monthdownloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="downloadtimes">
+	              downloadtimes = #downloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daysearchtimes">
+	              daysearchtimes = #daysearchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weeksearchtimes">
+	              weeksearchtimes = #weeksearchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthsearchtimes">
+	              monthsearchtimes = #monthsearchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="searchtimes">
+	              searchtimes = #searchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayscantimes">
+	              dayscantimes = #dayscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekscantimes">
+	              weekscantimes = #weekscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthscantimes">
+	              monthscantimes = #monthscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="scantimes">
+	              scantimes = #scantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayordertimes">
+	              dayordertimes = #dayordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekordertimes">
+	              weekordertimes = #weekordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthordertimes">
+	              monthordertimes = #monthordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="ordertimes">
+	              ordertimes = #ordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daycommenttimes">
+	              daycommenttimes = #daycommenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekcommenttimes">
+	              weekcommenttimes = #weekcommenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthcommenttimes">
+	              monthcommenttimes = #monthcommenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="commenttimes">
+	              commenttimes = #commenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daymarktimes">
+	              daymarktimes = #daymarktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekmarktimes">
+	              weekmarktimes = #weekmarktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthmarktimes">
+	              monthmarktimes = #monthmarktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="marktimes">
+	              marktimes = #marktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayscoretimes">
+	              dayscoretimes = #dayscoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekscoretimes">
+	              weekscoretimes = #weekscoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthscoretimes">
+	              monthscoretimes = #monthscoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="scoretimes">
+	              scoretimes = #scoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daycommendtimes">
+	              daycommendtimes = #daycommendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekcommendtimes">
+	              weekcommendtimes = #weekcommendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthcommendtimes">
+	              monthcommendtimes = #monthcommendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="commendtimes">
+	              commendtimes = #commendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daycollecttimes">
+	              daycollecttimes = #daycollecttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekcollecttimes">
+	              weekcollecttimes = #weekcollecttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthcollecttimes">
+	              monthcollecttimes = #monthcollecttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="collecttimes">
+	              collecttimes = #collecttimes#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospContentPublish">
+
+        UPDATE osp_content_publish SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_content_publish where
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospContentPublishResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publish 
+	        where 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="name">
+	             name = #name#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="osenv">
+	             osenv = #osenv#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="spname">
+	             spname = #spname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="icpcode">
+	             icpcode = #icpcode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="icpservid">
+	             icpservid = #icpservid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="version">
+	             version = #version#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="apppackage">
+	             apppackage = #apppackage#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="platform">
+	             platform = #platform#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="filesize">
+	             filesize = #filesize#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="filemd5">
+	             filemd5 = #filemd5#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="enforceflag">
+	             enforceflag = #enforceflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="downloadurl">
+	             downloadurl = #downloadurl#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="filename">
+	             filename = #filename#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="alias">
+	             alias = #alias#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="summary">
+	             summary = #summary#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="memo">
+	             memo = #memo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="content">
+	             content = #content#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="mobilelogo">
+	             mobilelogo = #mobilelogo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="wwwlogo">
+	             wwwlogo = #wwwlogo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="adimage">
+	             adimage = #adimage#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="image0">
+	             image0 = #image0#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="image1">
+	             image1 = #image1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="image2">
+	             image2 = #image2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="image3">
+	             image3 = #image3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="keyword">
+	             keyword = #keyword#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="finedate">
+	             finedate = #finedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="fineflag">
+	             fineflag = #fineflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="desktopdate">
+	             desktopdate = #desktopdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="desktopflag">
+	             desktopflag = #desktopflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="topdate">
+	             topdate = #topdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="topflag">
+	             topflag = #topflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="recommenddate">
+	             recommenddate = #recommenddate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="recommendflag">
+	             recommendflag = #recommendflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="addate">
+	             addate = #addate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="adflag">
+	             adflag = #adflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="publishflag">
+	             publishflag = #publishflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="publishdate">
+	             publishdate = #publishdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="downlinedate">
+	             downlinedate = #downlinedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="status">
+	             status = #status#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="pricetype">
+	             pricetype = #pricetype#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderflag">
+	             orderflag = #orderflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="marketprice">
+	             marketprice = #marketprice#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="price">
+	             price = #price#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="discount">
+	             discount = #discount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="discountprice">
+	             discountprice = #discountprice#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="memberprice">
+	             memberprice = #memberprice#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="vipprice">
+	             vipprice = #vipprice#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="effectdate">
+	             effectdate = #effectdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="unit">
+	             unit = #unit#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop1">
+	             prop1 = #prop1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop2">
+	             prop2 = #prop2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop3">
+	             prop3 = #prop3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop4">
+	             prop4 = #prop4#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop5">
+	             prop5 = #prop5#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop6">
+	             prop6 = #prop6#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop7">
+	             prop7 = #prop7#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="deleteflag">
+	             deleteflag = #deleteflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="deletedate">
+	             deletedate = #deletedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentinnercode">
+	             contentinnercode = #contentinnercode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daydownloadtimes">
+	             daydownloadtimes = #daydownloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekdownloadtimes">
+	             weekdownloadtimes = #weekdownloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthdownloadtimes">
+	             monthdownloadtimes = #monthdownloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="downloadtimes">
+	             downloadtimes = #downloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daysearchtimes">
+	             daysearchtimes = #daysearchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weeksearchtimes">
+	             weeksearchtimes = #weeksearchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthsearchtimes">
+	             monthsearchtimes = #monthsearchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="searchtimes">
+	             searchtimes = #searchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayscantimes">
+	             dayscantimes = #dayscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekscantimes">
+	             weekscantimes = #weekscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthscantimes">
+	             monthscantimes = #monthscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="scantimes">
+	             scantimes = #scantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayordertimes">
+	             dayordertimes = #dayordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekordertimes">
+	             weekordertimes = #weekordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthordertimes">
+	             monthordertimes = #monthordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="ordertimes">
+	             ordertimes = #ordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daycommenttimes">
+	             daycommenttimes = #daycommenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekcommenttimes">
+	             weekcommenttimes = #weekcommenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthcommenttimes">
+	             monthcommenttimes = #monthcommenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="commenttimes">
+	             commenttimes = #commenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daymarktimes">
+	             daymarktimes = #daymarktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekmarktimes">
+	             weekmarktimes = #weekmarktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthmarktimes">
+	             monthmarktimes = #monthmarktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="marktimes">
+	             marktimes = #marktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayscoretimes">
+	             dayscoretimes = #dayscoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekscoretimes">
+	             weekscoretimes = #weekscoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthscoretimes">
+	             monthscoretimes = #monthscoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="scoretimes">
+	             scoretimes = #scoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daycommendtimes">
+	             daycommendtimes = #daycommendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekcommendtimes">
+	             weekcommendtimes = #weekcommendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthcommendtimes">
+	             monthcommendtimes = #monthcommendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="commendtimes">
+	             commendtimes = #commendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daycollecttimes">
+	             daycollecttimes = #daycollecttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekcollecttimes">
+	             weekcollecttimes = #weekcollecttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthcollecttimes">
+	             monthcollecttimes = #monthcollecttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="collecttimes">
+	             collecttimes = #collecttimes#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_content_publish
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospContentPublishResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publish 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospContentPublishResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publish 
+	    ]]>
+	        order by 
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospContentPublishResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publish 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Tright">
+
+    <typeAlias alias="tright" type="com.osp.biz.model.Tright"/>
+
+    <resultMap id="trightResult" class="tright">
+        <result property="rightId" column="right_ID"/>
+        <result property="rightName" column="right_name"/>
+        <result property="rightUrl" column="right_url"/>
+        <result property="parentRightId" column="parent_right_id"/>
+        <result property="rightLevel" column="right_level"/>
+        <result property="orderByTopMenu" column="orderByTopMenu"/>
+        <result property="orderByMidMenu" column="orderByMidMenu"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	right_ID ,
+        	right_name ,
+        	right_url ,
+        	parent_right_id ,
+        	right_level ,
+        	orderByTopMenu ,
+        	orderByMidMenu 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="tright">
+    <![CDATA[
+        INSERT INTO
+        t_right (
+        	right_ID ,
+        	right_name ,
+        	right_url ,
+        	parent_right_id ,
+        	right_level ,
+        	orderByTopMenu ,
+        	orderByMidMenu 
+        ) VALUES (
+          NULL
+        ,
+        	#rightName# 
+        ,
+        	#rightUrl# 
+        ,
+        	#parentRightId# 
+        ,
+        	#rightLevel# 
+        ,
+        	#orderByTopMenu# 
+        ,
+        	#orderByMidMenu# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="rightId" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="tright">
+    <![CDATA[
+        UPDATE t_right SET
+	        right_name = #rightName# ,
+	        right_url = #rightUrl# ,
+	        parent_right_id = #parentRightId# ,
+	        right_level = #rightLevel# ,
+	        orderByTopMenu = #orderByTopMenu# ,
+	        orderByMidMenu = #orderByMidMenu# 
+        WHERE 
+	        right_ID = #rightId# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="rightName">
+	              right_name = #rightName#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="rightUrl">
+	              right_url = #rightUrl#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="parentRightId">
+	              parent_right_id = #parentRightId#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="rightLevel">
+	              right_level = #rightLevel#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderByTopMenu">
+	              orderByTopMenu = #orderByTopMenu#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderByMidMenu">
+	              orderByMidMenu = #orderByMidMenu#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="tright">
+
+        UPDATE t_right SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        right_ID = #rightId# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Integer">
+    <![CDATA[
+        delete from t_right where
+        right_ID = #rightId# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="trightResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_right 
+	        where 
+		        right_ID = #rightId# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="rightId">
+	             right_ID = #rightId#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="rightName">
+	             right_name = #rightName#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="rightUrl">
+	             right_url = #rightUrl#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="parentRightId">
+	             parent_right_id = #parentRightId#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="rightLevel">
+	             right_level = #rightLevel#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderByTopMenu">
+	             orderByTopMenu = #orderByTopMenu#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderByMidMenu">
+	             orderByMidMenu = #orderByMidMenu#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from t_right
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="trightResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_right 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        right_ID desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="trightResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_right 
+	    ]]>
+	        order by 
+		        right_ID desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="trightResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from t_right 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        right_ID desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

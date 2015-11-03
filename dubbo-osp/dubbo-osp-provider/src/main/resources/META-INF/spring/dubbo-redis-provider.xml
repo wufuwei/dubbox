@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd"
+	default-lazy-init="true">
+
+	<!-- <context:property-placeholder location="classpath:conf/*.properties" 
+		ignore-unresolvable="true" /> -->
+	<context:property-placeholder location="classpath:conf/redis.properties"
+		ignore-unresolvable="true" />
+
+	<bean id="masterShardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1">
+			<list>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.master.hosts_1}" />
+					<constructor-arg index="1" value="${redis.master.ports_1}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.master.hosts_2}" />
+					<constructor-arg index="1" value="${redis.master.ports_2}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.master.hosts_3}" />
+					<constructor-arg index="1" value="${redis.master.ports_3}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.master.hosts_4}" />
+					<constructor-arg index="1" value="${redis.master.ports_4}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.master.hosts_5}" />
+					<constructor-arg index="1" value="${redis.master.ports_5}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.master.hosts_6}" />
+					<constructor-arg index="1" value="${redis.master.ports_6}"
+						type="int" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="slaveShardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1">
+			<list>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.slave.hosts_1}" />
+					<constructor-arg index="1" value="${redis.slave.ports_1}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.slave.hosts_2}" />
+					<constructor-arg index="1" value="${redis.slave.ports_2}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.slave.hosts_3}" />
+					<constructor-arg index="1" value="${redis.slave.ports_3}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.slave.hosts_4}" />
+					<constructor-arg index="1" value="${redis.slave.ports_4}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.slave.hosts_5}" />
+					<constructor-arg index="1" value="${redis.slave.ports_5}"
+						type="int" />
+				</bean>
+				<bean class="redis.clients.jedis.JedisShardInfo">
+					<constructor-arg index="0" value="${redis.slave.hosts_6}" />
+					<constructor-arg index="1" value="${redis.slave.ports_6}"
+						type="int" />
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+	<!-- <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig"> 
+		<property name="maxTotal" value="2048" /> <property name="maxIdle" value="200" 
+		/> <property name="numTestsPerEvictionRun" value="1024" /> <property name="timeBetweenEvictionRunsMillis" 
+		value="30000" /> <property name="minEvictableIdleTimeMillis" value="-1" /> 
+		<property name="softMinEvictableIdleTimeMillis" value="10000" /> <property 
+		name="maxWaitMillis" value="1500" /> <property name="testOnBorrow" value="true" 
+		/> <property name="testWhileIdle" value="true" /> <property name="testOnReturn" 
+		value="false" /> <property name="jmxEnabled" value="true" /> <property name="jmxNamePrefix" 
+		value="youyuan" /> <property name="blockWhenExhausted" value="false" /> </bean> -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${maxTotal}" />
+		<property name="maxIdle" value="${maxIdle}" />
+		<property name="numTestsPerEvictionRun" value="${numTestsPerEvictionRun}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />
+		<property name="softMinEvictableIdleTimeMillis" value="${softMinEvictableIdleTimeMillis}" />
+		<property name="maxWaitMillis" value="${maxWaitMillis}" />
+		<property name="testOnBorrow" value="${testOnBorrow}" />
+		<property name="testWhileIdle" value="${testWhileIdle}" />
+		<property name="testOnReturn" value="${testOnReturn}" />
+		<property name="jmxEnabled" value="${jmxEnabled}" />
+		<property name="jmxNamePrefix" value="${jmxNamePrefix}" />
+		<property name="blockWhenExhausted" value="${blockWhenExhausted}" />
+	</bean>
+	<bean id="redisTemplate" class="com.aspire.redis.RedisTemplate">
+		<property name="masterShardedJedisPool" ref="masterShardedJedisPool" />
+		<property name="slaveShardedJedisPool" ref="slaveShardedJedisPool" />
+	</bean>
+
+
+	<bean id="jedisClusterMutil" class="redis.clients.jedis.JedisCluster">
+		<constructor-arg  index="0" type="java.util.Set">
+			<set>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.12.9.169" />
+					<constructor-arg index="1" type="int"
+						value="7000" />
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.12.9.169" />
+					<constructor-arg index="1" type="int"
+						value="7001" />
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.12.9.170" />
+					<constructor-arg index="1" type="int"
+						value="7000" />
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.12.9.170" />
+					<constructor-arg index="1" type="int"
+						value="7001" />
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.12.9.171" />
+					<constructor-arg index="1" type="int"
+						value="7000" />
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.12.9.171" />
+					<constructor-arg index="1" type="int"
+						value="7001" />
+				</bean>
+			</set>
+		</constructor-arg>
+		
+		<constructor-arg index="1" type="int" value="5000" />
+		<constructor-arg index="2" type="int" value="5000" />
+		<constructor-arg index="3"
+			type="org.apache.commons.pool2.impl.GenericObjectPoolConfig" ref="jedisPoolConfig" />
+		
+	</bean>
+	<bean id="jedisClusterHaproxy" class="redis.clients.jedis.JedisCluster">
+		<constructor-arg index="0" type="java.util.Set">
+			<set>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg index="0" type="java.lang.String"
+						value="10.1.3.225" />
+					<constructor-arg index="1" type="int"
+						value="30000" />
+				</bean>
+			</set>
+		</constructor-arg>
+		<constructor-arg index="1" type="int" value="5000" />
+		<constructor-arg index="2" type="int" value="5000" />
+		<constructor-arg index="3"
+			type="org.apache.commons.pool2.impl.GenericObjectPoolConfig" ref="jedisPoolConfig" />
+	</bean>
+
+</beans>

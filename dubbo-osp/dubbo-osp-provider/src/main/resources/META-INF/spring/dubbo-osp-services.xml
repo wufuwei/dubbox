@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - Copyright 1999-2011 Alibaba Group. - - Licensed under the Apache License, 
+	Version 2.0 (the "License"); - you may not use this file except in compliance 
+	with the License. - You may obtain a copy of the License at - - http://www.apache.org/licenses/LICENSE-2.0 
+	- - Unless required by applicable law or agreed to in writing, software - 
+	distributed under the License is distributed on an "AS IS" BASIS, - WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. - See the 
+	License for the specific language governing permissions and - limitations 
+	under the License. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+
+	<bean id="ospAppencodeService" class="com.osp.biz.service.impl.OspAppencodeService">
+		<property name="ospAppencodeManager" ref="ospAppencodeManager" />
+	</bean>
+	<bean id="ospAppencodeManager" class="com.osp.biz.manager.impl.OspAppencodeManager">
+		<property name="ospAppencodeDao" ref="ospAppencodeDao" />
+	</bean>
+	<bean id="ospAppencodeDao" class="com.osp.biz.dao.ibatis.OspAppencodeDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="ospContentStatService" class="com.osp.biz.service.impl.OspContentStatService">
+		<property name="ospContentStatManager" ref="ospContentStatManager" />
+	</bean>
+	<bean id="ospContentStatManager" class="com.osp.biz.manager.impl.OspContentStatManager">
+		<property name="ospContentStatDao" ref="ospContentStatDao" />
+	</bean>
+	<bean id="ospContentStatDao" class="com.osp.biz.dao.ibatis.OspContentStatDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentPublishflagService" class="com.osp.biz.service.impl.OspContentPublishflagService">
+		<property name="ospContentPublishflagManager" ref="ospContentPublishflagManager" />
+	</bean>
+	<bean id="ospContentPublishflagManager" class="com.osp.biz.manager.impl.OspContentPublishflagManager">
+		<property name="ospContentPublishflagDao" ref="ospContentPublishflagDao" />
+	</bean>
+	<bean id="ospContentPublishflagDao" class="com.osp.biz.dao.ibatis.OspContentPublishflagDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentPublishService" class="com.osp.biz.service.impl.OspContentPublishService">
+		<property name="ospContentPublishManager" ref="ospContentPublishManager" />
+	</bean>
+	<bean id="ospContentPublishManager" class="com.osp.biz.manager.impl.OspContentPublishManager">
+		<property name="ospContentPublishDao" ref="ospContentPublishDao" />
+	</bean>
+	<bean id="ospContentPublishDao" class="com.osp.biz.dao.ibatis.OspContentPublishDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tableWlanUpdateInfoService" class="com.osp.biz.service.impl.TableWlanUpdateInfoService">
+		<property name="tableWlanUpdateInfoManager" ref="tableWlanUpdateInfoManager" />
+	</bean>
+	<bean id="tableWlanUpdateInfoManager" class="com.osp.biz.manager.impl.TableWlanUpdateInfoManager">
+		<property name="tableWlanUpdateInfoDao" ref="tableWlanUpdateInfoDao" />
+	</bean>
+	<bean id="tableWlanUpdateInfoDao" class="com.osp.biz.dao.ibatis.TableWlanUpdateInfoDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tableVersionDownloadLogService" class="com.osp.biz.service.impl.TableVersionDownloadLogService">
+		<property name="tableVersionDownloadLogManager" ref="tableVersionDownloadLogManager" />
+	</bean>
+	<bean id="tableVersionDownloadLogManager" class="com.osp.biz.manager.impl.TableVersionDownloadLogManager">
+		<property name="tableVersionDownloadLogDao" ref="tableVersionDownloadLogDao" />
+	</bean>
+	<bean id="tableVersionDownloadLogDao" class="com.osp.biz.dao.ibatis.TableVersionDownloadLogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tablePlatformVersionInfoService"
+		class="com.osp.biz.service.impl.TablePlatformVersionInfoService">
+		<property name="tablePlatformVersionInfoManager" ref="tablePlatformVersionInfoManager" />
+	</bean>
+	<bean id="tablePlatformVersionInfoManager"
+		class="com.osp.biz.manager.impl.TablePlatformVersionInfoManager">
+		<property name="tablePlatformVersionInfoDao" ref="tablePlatformVersionInfoDao" />
+	</bean>
+	<bean id="tablePlatformVersionInfoDao" class="com.osp.biz.dao.ibatis.TablePlatformVersionInfoDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tablePlatformInfoService" class="com.osp.biz.service.impl.TablePlatformInfoService">
+		<property name="tablePlatformInfoManager" ref="tablePlatformInfoManager" />
+	</bean>
+	<bean id="tablePlatformInfoManager" class="com.osp.biz.manager.impl.TablePlatformInfoManager">
+		<property name="tablePlatformInfoDao" ref="tablePlatformInfoDao" />
+	</bean>
+	<bean id="tablePlatformInfoDao" class="com.osp.biz.dao.ibatis.TablePlatformInfoDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tableChannelService" class="com.osp.biz.service.impl.TableChannelService">
+		<property name="tableChannelManager" ref="tableChannelManager" />
+	</bean>
+	<bean id="tableChannelManager" class="com.osp.biz.manager.impl.TableChannelManager">
+		<property name="tableChannelDao" ref="tableChannelDao" />
+	</bean>
+	<bean id="tableChannelDao" class="com.osp.biz.dao.ibatis.TableChannelDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tsequenceService" class="com.osp.biz.service.impl.TsequenceService">
+		<property name="tsequenceManager" ref="tsequenceManager" />
+	</bean>
+	<bean id="tsequenceManager" class="com.osp.biz.manager.impl.TsequenceManager">
+		<property name="tsequenceDao" ref="tsequenceDao" />
+	</bean>
+	<bean id="tsequenceDao" class="com.osp.biz.dao.ibatis.TsequenceDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="troleRightService" class="com.osp.biz.service.impl.TroleRightService">
+		<property name="troleRightManager" ref="troleRightManager" />
+	</bean>
+	<bean id="troleRightManager" class="com.osp.biz.manager.impl.TroleRightManager">
+		<property name="troleRightDao" ref="troleRightDao" />
+	</bean>
+	<bean id="troleRightDao" class="com.osp.biz.dao.ibatis.TroleRightDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="troleService" class="com.osp.biz.service.impl.TroleService">
+		<property name="troleManager" ref="troleManager" />
+	</bean>
+	<bean id="troleManager" class="com.osp.biz.manager.impl.TroleManager">
+		<property name="troleDao" ref="troleDao" />
+	</bean>
+	<bean id="troleDao" class="com.osp.biz.dao.ibatis.TroleDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="trightService" class="com.osp.biz.service.impl.TrightService">
+		<property name="trightManager" ref="trightManager" />
+	</bean>
+	<bean id="trightManager" class="com.osp.biz.manager.impl.TrightManager">
+		<property name="trightDao" ref="trightDao" />
+	</bean>
+	<bean id="trightDao" class="com.osp.biz.dao.ibatis.TrightDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="toprationLogService" class="com.osp.biz.service.impl.ToprationLogService">
+		<property name="toprationLogManager" ref="toprationLogManager" />
+	</bean>
+	<bean id="toprationLogManager" class="com.osp.biz.manager.impl.ToprationLogManager">
+		<property name="toprationLogDao" ref="toprationLogDao" />
+	</bean>
+	<bean id="toprationLogDao" class="com.osp.biz.dao.ibatis.ToprationLogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tassginRoleService" class="com.osp.biz.service.impl.TassginRoleService">
+		<property name="tassginRoleManager" ref="tassginRoleManager" />
+	</bean>
+	<bean id="tassginRoleManager" class="com.osp.biz.manager.impl.TassginRoleManager">
+		<property name="tassginRoleDao" ref="tassginRoleDao" />
+	</bean>
+	<bean id="tassginRoleDao" class="com.osp.biz.dao.ibatis.TassginRoleDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="tadministratorsService" class="com.osp.biz.service.impl.TadministratorsService">
+		<property name="tadministratorsManager" ref="tadministratorsManager" />
+	</bean>
+	<bean id="tadministratorsManager" class="com.osp.biz.manager.impl.TadministratorsManager">
+		<property name="tadministratorsDao" ref="tadministratorsDao" />
+	</bean>
+	<bean id="tadministratorsDao" class="com.osp.biz.dao.ibatis.TadministratorsDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="provinceService" class="com.osp.biz.service.impl.ProvinceService">
+		<property name="provinceManager" ref="provinceManager" />
+	</bean>
+	<bean id="provinceManager" class="com.osp.biz.manager.impl.ProvinceManager">
+		<property name="provinceDao" ref="provinceDao" />
+	</bean>
+	<bean id="provinceDao" class="com.osp.biz.dao.ibatis.ProvinceDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospUpdateMacLogService" class="com.osp.biz.service.impl.OspUpdateMacLogService">
+		<property name="ospUpdateMacLogManager" ref="ospUpdateMacLogManager" />
+	</bean>
+	<bean id="ospUpdateMacLogManager" class="com.osp.biz.manager.impl.OspUpdateMacLogManager">
+		<property name="ospUpdateMacLogDao" ref="ospUpdateMacLogDao" />
+	</bean>
+	<bean id="ospUpdateMacLogDao" class="com.osp.biz.dao.ibatis.OspUpdateMacLogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospTradetypeService" class="com.osp.biz.service.impl.OspTradetypeService">
+		<property name="ospTradetypeManager" ref="ospTradetypeManager" />
+	</bean>
+	<bean id="ospTradetypeManager" class="com.osp.biz.manager.impl.OspTradetypeManager">
+		<property name="ospTradetypeDao" ref="ospTradetypeDao" />
+	</bean>
+	<bean id="ospTradetypeDao" class="com.osp.biz.dao.ibatis.OspTradetypeDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospTraderesultService" class="com.osp.biz.service.impl.OspTraderesultService">
+		<property name="ospTraderesultManager" ref="ospTraderesultManager" />
+	</bean>
+	<bean id="ospTraderesultManager" class="com.osp.biz.manager.impl.OspTraderesultManager">
+		<property name="ospTraderesultDao" ref="ospTraderesultDao" />
+	</bean>
+	<bean id="ospTraderesultDao" class="com.osp.biz.dao.ibatis.OspTraderesultDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospTerminalprefixService" class="com.osp.biz.service.impl.OspTerminalprefixService">
+		<property name="ospTerminalprefixManager" ref="ospTerminalprefixManager" />
+	</bean>
+	<bean id="ospTerminalprefixManager" class="com.osp.biz.manager.impl.OspTerminalprefixManager">
+		<property name="ospTerminalprefixDao" ref="ospTerminalprefixDao" />
+	</bean>
+	<bean id="ospTerminalprefixDao" class="com.osp.biz.dao.ibatis.OspTerminalprefixDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospTerminalonlineService" class="com.osp.biz.service.impl.OspTerminalonlineService">
+		<property name="ospTerminalonlineManager" ref="ospTerminalonlineManager" />
+	</bean>
+	<bean id="ospTerminalonlineManager" class="com.osp.biz.manager.impl.OspTerminalonlineManager">
+		<property name="ospTerminalonlineDao" ref="ospTerminalonlineDao" />
+	</bean>
+	<bean id="ospTerminalonlineDao" class="com.osp.biz.dao.ibatis.OspTerminalonlineDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospTerminalgroupCatalogService" class="com.osp.biz.service.impl.OspTerminalgroupCatalogService">
+		<property name="ospTerminalgroupCatalogManager" ref="ospTerminalgroupCatalogManager" />
+	</bean>
+	<bean id="ospTerminalgroupCatalogManager" class="com.osp.biz.manager.impl.OspTerminalgroupCatalogManager">
+		<property name="ospTerminalgroupCatalogDao" ref="ospTerminalgroupCatalogDao" />
+	</bean>
+	<bean id="ospTerminalgroupCatalogDao" class="com.osp.biz.dao.ibatis.OspTerminalgroupCatalogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospTerminalgroupService" class="com.osp.biz.service.impl.OspTerminalgroupService">
+		<property name="ospTerminalgroupManager" ref="ospTerminalgroupManager" />
+	</bean>
+	<bean id="ospTerminalgroupManager" class="com.osp.biz.manager.impl.OspTerminalgroupManager">
+		<property name="ospTerminalgroupDao" ref="ospTerminalgroupDao" />
+	</bean>
+	<bean id="ospTerminalgroupDao" class="com.osp.biz.dao.ibatis.OspTerminalgroupDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospSpService" class="com.osp.biz.service.impl.OspSpService">
+		<property name="ospSpManager" ref="ospSpManager" />
+	</bean>
+	<bean id="ospSpManager" class="com.osp.biz.manager.impl.OspSpManager">
+		<property name="ospSpDao" ref="ospSpDao" />
+	</bean>
+	<bean id="ospSpDao" class="com.osp.biz.dao.ibatis.OspSpDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospServerconfigService" class="com.osp.biz.service.impl.OspServerconfigService">
+		<property name="ospServerconfigManager" ref="ospServerconfigManager" />
+	</bean>
+	<bean id="ospServerconfigManager" class="com.osp.biz.manager.impl.OspServerconfigManager">
+		<property name="ospServerconfigDao" ref="ospServerconfigDao" />
+	</bean>
+	<bean id="ospServerconfigDao" class="com.osp.biz.dao.ibatis.OspServerconfigDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospSearchkeylogService" class="com.osp.biz.service.impl.OspSearchkeylogService">
+		<property name="ospSearchkeylogManager" ref="ospSearchkeylogManager" />
+	</bean>
+	<bean id="ospSearchkeylogManager" class="com.osp.biz.manager.impl.OspSearchkeylogManager">
+		<property name="ospSearchkeylogDao" ref="ospSearchkeylogDao" />
+	</bean>
+	<bean id="ospSearchkeylogDao" class="com.osp.biz.dao.ibatis.OspSearchkeylogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospSearchkeyService" class="com.osp.biz.service.impl.OspSearchkeyService">
+		<property name="ospSearchkeyManager" ref="ospSearchkeyManager" />
+	</bean>
+	<bean id="ospSearchkeyManager" class="com.osp.biz.manager.impl.OspSearchkeyManager">
+		<property name="ospSearchkeyDao" ref="ospSearchkeyDao" />
+	</bean>
+	<bean id="ospSearchkeyDao" class="com.osp.biz.dao.ibatis.OspSearchkeyDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospPullcontenttoService" class="com.osp.biz.service.impl.OspPullcontenttoService">
+		<property name="ospPullcontenttoManager" ref="ospPullcontenttoManager" />
+	</bean>
+	<bean id="ospPullcontenttoManager" class="com.osp.biz.manager.impl.OspPullcontenttoManager">
+		<property name="ospPullcontenttoDao" ref="ospPullcontenttoDao" />
+	</bean>
+	<bean id="ospPullcontenttoDao" class="com.osp.biz.dao.ibatis.OspPullcontenttoDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospPullcontentlogService" class="com.osp.biz.service.impl.OspPullcontentlogService">
+		<property name="ospPullcontentlogManager" ref="ospPullcontentlogManager" />
+	</bean>
+	<bean id="ospPullcontentlogManager" class="com.osp.biz.manager.impl.OspPullcontentlogManager">
+		<property name="ospPullcontentlogDao" ref="ospPullcontentlogDao" />
+	</bean>
+	<bean id="ospPullcontentlogDao" class="com.osp.biz.dao.ibatis.OspPullcontentlogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospPullcontentService" class="com.osp.biz.service.impl.OspPullcontentService">
+		<property name="ospPullcontentManager" ref="ospPullcontentManager" />
+	</bean>
+	<bean id="ospPullcontentManager" class="com.osp.biz.manager.impl.OspPullcontentManager">
+		<property name="ospPullcontentDao" ref="ospPullcontentDao" />
+	</bean>
+	<bean id="ospPullcontentDao" class="com.osp.biz.dao.ibatis.OspPullcontentDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospPropertiesService" class="com.osp.biz.service.impl.OspPropertiesService">
+		<property name="ospPropertiesManager" ref="ospPropertiesManager" />
+	</bean>
+	<bean id="ospPropertiesManager" class="com.osp.biz.manager.impl.OspPropertiesManager">
+		<property name="ospPropertiesDao" ref="ospPropertiesDao" />
+	</bean>
+	<bean id="ospPropertiesDao" class="com.osp.biz.dao.ibatis.OspPropertiesDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospPaybindService" class="com.osp.biz.service.impl.OspPaybindService">
+		<property name="ospPaybindManager" ref="ospPaybindManager" />
+	</bean>
+	<bean id="ospPaybindManager" class="com.osp.biz.manager.impl.OspPaybindManager">
+		<property name="ospPaybindDao" ref="ospPaybindDao" />
+	</bean>
+	<bean id="ospPaybindDao" class="com.osp.biz.dao.ibatis.OspPaybindDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospOrderitemService" class="com.osp.biz.service.impl.OspOrderitemService">
+		<property name="ospOrderitemManager" ref="ospOrderitemManager" />
+	</bean>
+	<bean id="ospOrderitemManager" class="com.osp.biz.manager.impl.OspOrderitemManager">
+		<property name="ospOrderitemDao" ref="ospOrderitemDao" />
+	</bean>
+	<bean id="ospOrderitemDao" class="com.osp.biz.dao.ibatis.OspOrderitemDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospOrderService" class="com.osp.biz.service.impl.OspOrderService">
+		<property name="ospOrderManager" ref="ospOrderManager" />
+	</bean>
+	<bean id="ospOrderManager" class="com.osp.biz.manager.impl.OspOrderManager">
+		<property name="ospOrderDao" ref="ospOrderDao" />
+	</bean>
+	<bean id="ospOrderDao" class="com.osp.biz.dao.ibatis.OspOrderDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospMemberactionlogService" class="com.osp.biz.service.impl.OspMemberactionlogService">
+		<property name="ospMemberactionlogManager" ref="ospMemberactionlogManager" />
+	</bean>
+	<bean id="ospMemberactionlogManager" class="com.osp.biz.manager.impl.OspMemberactionlogManager">
+		<property name="ospMemberactionlogDao" ref="ospMemberactionlogDao" />
+	</bean>
+	<bean id="ospMemberactionlogDao" class="com.osp.biz.dao.ibatis.OspMemberactionlogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospMemberService" class="com.osp.biz.service.impl.OspMemberService">
+		<property name="ospMemberManager" ref="ospMemberManager" />
+	</bean>
+	<bean id="ospMemberManager" class="com.osp.biz.manager.impl.OspMemberManager">
+		<property name="ospMemberDao" ref="ospMemberDao" />
+	</bean>
+	<bean id="ospMemberDao" class="com.osp.biz.dao.ibatis.OspMemberDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospErrorcodeService" class="com.osp.biz.service.impl.OspErrorcodeService">
+		<property name="ospErrorcodeManager" ref="ospErrorcodeManager" />
+	</bean>
+	<bean id="ospErrorcodeManager" class="com.osp.biz.manager.impl.OspErrorcodeManager">
+		<property name="ospErrorcodeDao" ref="ospErrorcodeDao" />
+	</bean>
+	<bean id="ospErrorcodeDao" class="com.osp.biz.dao.ibatis.OspErrorcodeDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospDeviceService" class="com.osp.biz.service.impl.OspDeviceService">
+		<property name="ospDeviceManager" ref="ospDeviceManager" />
+	</bean>
+	<bean id="ospDeviceManager" class="com.osp.biz.manager.impl.OspDeviceManager">
+		<property name="ospDeviceDao" ref="ospDeviceDao" />
+	</bean>
+	<bean id="ospDeviceDao" class="com.osp.biz.dao.ibatis.OspDeviceDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospDebitcreditService" class="com.osp.biz.service.impl.OspDebitcreditService">
+		<property name="ospDebitcreditManager" ref="ospDebitcreditManager" />
+	</bean>
+	<bean id="ospDebitcreditManager" class="com.osp.biz.manager.impl.OspDebitcreditManager">
+		<property name="ospDebitcreditDao" ref="ospDebitcreditDao" />
+	</bean>
+	<bean id="ospDebitcreditDao" class="com.osp.biz.dao.ibatis.OspDebitcreditDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentrelationService" class="com.osp.biz.service.impl.OspContentrelationService">
+		<property name="ospContentrelationManager" ref="ospContentrelationManager" />
+	</bean>
+	<bean id="ospContentrelationManager" class="com.osp.biz.manager.impl.OspContentrelationManager">
+		<property name="ospContentrelationDao" ref="ospContentrelationDao" />
+	</bean>
+	<bean id="ospContentrelationDao" class="com.osp.biz.dao.ibatis.OspContentrelationDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentauditlogService" class="com.osp.biz.service.impl.OspContentauditlogService">
+		<property name="ospContentauditlogManager" ref="ospContentauditlogManager" />
+	</bean>
+	<bean id="ospContentauditlogManager" class="com.osp.biz.manager.impl.OspContentauditlogManager">
+		<property name="ospContentauditlogDao" ref="ospContentauditlogDao" />
+	</bean>
+	<bean id="ospContentauditlogDao" class="com.osp.biz.dao.ibatis.OspContentauditlogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentactionlogService" class="com.osp.biz.service.impl.OspContentactionlogService">
+		<property name="ospContentactionlogManager" ref="ospContentactionlogManager" />
+	</bean>
+	<bean id="ospContentactionlogManager" class="com.osp.biz.manager.impl.OspContentactionlogManager">
+		<property name="ospContentactionlogDao" ref="ospContentactionlogDao" />
+	</bean>
+	<bean id="ospContentactionlogDao" class="com.osp.biz.dao.ibatis.OspContentactionlogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentactionService" class="com.osp.biz.service.impl.OspContentactionService">
+		<property name="ospContentactionManager" ref="ospContentactionManager" />
+	</bean>
+	<bean id="ospContentactionManager" class="com.osp.biz.manager.impl.OspContentactionManager">
+		<property name="ospContentactionDao" ref="ospContentactionDao" />
+	</bean>
+	<bean id="ospContentactionDao" class="com.osp.biz.dao.ibatis.OspContentactionDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospContentService" class="com.osp.biz.service.impl.OspContentService">
+		<property name="ospContentManager" ref="ospContentManager" />
+	</bean>
+	<bean id="ospContentManager" class="com.osp.biz.manager.impl.OspContentManager">
+		<property name="ospContentDao" ref="ospContentDao" />
+	</bean>
+	<bean id="ospContentDao" class="com.osp.biz.dao.ibatis.OspContentDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospCatalogcontentService" class="com.osp.biz.service.impl.OspCatalogcontentService">
+		<property name="ospCatalogcontentManager" ref="ospCatalogcontentManager" />
+	</bean>
+	<bean id="ospCatalogcontentManager" class="com.osp.biz.manager.impl.OspCatalogcontentManager">
+		<property name="ospCatalogcontentDao" ref="ospCatalogcontentDao" />
+	</bean>
+	<bean id="ospCatalogcontentDao" class="com.osp.biz.dao.ibatis.OspCatalogcontentDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospCatalogactionlogService" class="com.osp.biz.service.impl.OspCatalogactionlogService">
+		<property name="ospCatalogactionlogManager" ref="ospCatalogactionlogManager" />
+	</bean>
+	<bean id="ospCatalogactionlogManager" class="com.osp.biz.manager.impl.OspCatalogactionlogManager">
+		<property name="ospCatalogactionlogDao" ref="ospCatalogactionlogDao" />
+	</bean>
+	<bean id="ospCatalogactionlogDao" class="com.osp.biz.dao.ibatis.OspCatalogactionlogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="ospCatalogService" class="com.osp.biz.service.impl.OspCatalogService">
+		<property name="ospCatalogManager" ref="ospCatalogManager" />
+	</bean>
+	<bean id="ospCatalogManager" class="com.osp.biz.manager.impl.OspCatalogManager">
+		<property name="ospCatalogDao" ref="ospCatalogDao" />
+	</bean>
+	<bean id="ospCatalogDao" class="com.osp.biz.dao.ibatis.OspCatalogDao">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+
+	
+	<bean id="keyToolService" class="com.aspire.wlan.key.service.impl.KeyToolService">		
+	    <property name="jedisCluster" ref="jedisClusterMutil" />
+	     <property name="redisTemplate" ref="redisTemplate" />
+	</bean>
+
+</beans>

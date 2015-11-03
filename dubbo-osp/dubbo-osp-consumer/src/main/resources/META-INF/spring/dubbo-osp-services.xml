@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - Copyright 1999-2011 Alibaba Group. - - Licensed under the Apache License, 
+	Version 2.0 (the "License"); - you may not use this file except in compliance 
+	with the License. - You may obtain a copy of the License at - - http://www.apache.org/licenses/LICENSE-2.0 
+	- - Unless required by applicable law or agreed to in writing, software - 
+	distributed under the License is distributed on an "AS IS" BASIS, - WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. - See the 
+	License for the specific language governing permissions and - limitations 
+	under the License. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+	<bean id="ospAppencodeConsumerService" class="com.osp.biz.service.consumer.OspAppencodeService">
+		<property name="ospAppencodeService" ref="ospAppencodeService" />
+	</bean>
+
+
+
+
+	<bean id="ospContentStatConsumerService" class="com.osp.biz.service.consumer.OspContentStatService">
+		<property name="ospContentStatService" ref="ospContentStatService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentPublishflagConsumerService"
+		class="com.osp.biz.service.consumer.OspContentPublishflagService">
+		<property name="ospContentPublishflagService" ref="ospContentPublishflagService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentPublishConsumerService" class="com.osp.biz.service.consumer.OspContentPublishService">
+		<property name="ospContentPublishService" ref="ospContentPublishService" />
+	</bean>
+
+
+
+
+
+	<bean id="tableWlanUpdateInfoConsumerService" class="com.osp.biz.service.consumer.TableWlanUpdateInfoService">
+		<property name="tableWlanUpdateInfoService" ref="tableWlanUpdateInfoService" />
+	</bean>
+
+
+
+
+
+	<bean id="tableVersionDownloadLogConsumerService"
+		class="com.osp.biz.service.consumer.TableVersionDownloadLogService">
+		<property name="tableVersionDownloadLogService" ref="tableVersionDownloadLogService" />
+	</bean>
+
+
+
+
+
+	<bean id="tablePlatformVersionInfoConsumerService"
+		class="com.osp.biz.service.consumer.TablePlatformVersionInfoService">
+		<property name="tablePlatformVersionInfoService" ref="tablePlatformVersionInfoService" />
+	</bean>
+
+
+
+
+
+	<bean id="tablePlatformInfoConsumerService" class="com.osp.biz.service.consumer.TablePlatformInfoService">
+		<property name="tablePlatformInfoService" ref="tablePlatformInfoService" />
+	</bean>
+
+
+
+
+
+	<bean id="tableChannelConsumerService" class="com.osp.biz.service.consumer.TableChannelService">
+		<property name="tableChannelService" ref="tableChannelService" />
+	</bean>
+
+
+
+
+
+	<bean id="tsequenceConsumerService" class="com.osp.biz.service.consumer.TsequenceService">
+		<property name="tsequenceService" ref="tsequenceService" />
+	</bean>
+
+
+
+
+
+	<bean id="troleRightConsumerService" class="com.osp.biz.service.consumer.TroleRightService">
+		<property name="troleRightService" ref="troleRightService" />
+	</bean>
+
+
+
+
+
+	<bean id="troleConsumerService" class="com.osp.biz.service.consumer.TroleService">
+		<property name="troleService" ref="troleService" />
+	</bean>
+
+
+
+
+
+	<bean id="trightConsumerService" class="com.osp.biz.service.consumer.TrightService">
+		<property name="trightService" ref="trightService" />
+	</bean>
+
+
+
+
+
+	<bean id="toprationLogConsumerService" class="com.osp.biz.service.consumer.ToprationLogService">
+		<property name="toprationLogService" ref="toprationLogService" />
+	</bean>
+
+
+
+
+
+	<bean id="tassginRoleConsumerService" class="com.osp.biz.service.consumer.TassginRoleService">
+		<property name="tassginRoleService" ref="tassginRoleService" />
+	</bean>
+
+
+
+
+
+	<bean id="tadministratorsConsumerService" class="com.osp.biz.service.consumer.TadministratorsService">
+		<property name="tadministratorsService" ref="tadministratorsService" />
+	</bean>
+
+
+
+
+
+	<bean id="provinceConsumerService" class="com.osp.biz.service.consumer.ProvinceService">
+		<property name="provinceService" ref="provinceService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospUpdateMacLogConsumerService" class="com.osp.biz.service.consumer.OspUpdateMacLogService">
+		<property name="ospUpdateMacLogService" ref="ospUpdateMacLogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospTradetypeConsumerService" class="com.osp.biz.service.consumer.OspTradetypeService">
+		<property name="ospTradetypeService" ref="ospTradetypeService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospTraderesultConsumerService" class="com.osp.biz.service.consumer.OspTraderesultService">
+		<property name="ospTraderesultService" ref="ospTraderesultService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospTerminalprefixConsumerService" class="com.osp.biz.service.consumer.OspTerminalprefixService">
+		<property name="ospTerminalprefixService" ref="ospTerminalprefixService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospTerminalonlineConsumerService" class="com.osp.biz.service.consumer.OspTerminalonlineService">
+		<property name="ospTerminalonlineService" ref="ospTerminalonlineService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospTerminalgroupCatalogConsumerService"
+		class="com.osp.biz.service.consumer.OspTerminalgroupCatalogService">
+		<property name="ospTerminalgroupCatalogService" ref="ospTerminalgroupCatalogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospTerminalgroupConsumerService" class="com.osp.biz.service.consumer.OspTerminalgroupService">
+		<property name="ospTerminalgroupService" ref="ospTerminalgroupService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospSpConsumerService" class="com.osp.biz.service.consumer.OspSpService">
+		<property name="ospSpService" ref="ospSpService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospServerconfigConsumerService" class="com.osp.biz.service.consumer.OspServerconfigService">
+		<property name="ospServerconfigService" ref="ospServerconfigService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospSearchkeylogConsumerService" class="com.osp.biz.service.consumer.OspSearchkeylogService">
+		<property name="ospSearchkeylogService" ref="ospSearchkeylogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospSearchkeyConsumerService" class="com.osp.biz.service.consumer.OspSearchkeyService">
+		<property name="ospSearchkeyService" ref="ospSearchkeyService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospPullcontenttoConsumerService" class="com.osp.biz.service.consumer.OspPullcontenttoService">
+		<property name="ospPullcontenttoService" ref="ospPullcontenttoService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospPullcontentlogConsumerService" class="com.osp.biz.service.consumer.OspPullcontentlogService">
+		<property name="ospPullcontentlogService" ref="ospPullcontentlogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospPullcontentConsumerService" class="com.osp.biz.service.consumer.OspPullcontentService">
+		<property name="ospPullcontentService" ref="ospPullcontentService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospPropertiesConsumerService" class="com.osp.biz.service.consumer.OspPropertiesService">
+		<property name="ospPropertiesService" ref="ospPropertiesService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospPaybindConsumerService" class="com.osp.biz.service.consumer.OspPaybindService">
+		<property name="ospPaybindService" ref="ospPaybindService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospOrderitemConsumerService" class="com.osp.biz.service.consumer.OspOrderitemService">
+		<property name="ospOrderitemService" ref="ospOrderitemService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospOrderConsumerService" class="com.osp.biz.service.consumer.OspOrderService">
+		<property name="ospOrderService" ref="ospOrderService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospMemberactionlogConsumerService" class="com.osp.biz.service.consumer.OspMemberactionlogService">
+		<property name="ospMemberactionlogService" ref="ospMemberactionlogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospMemberConsumerService" class="com.osp.biz.service.consumer.OspMemberService">
+		<property name="ospMemberService" ref="ospMemberService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospErrorcodeConsumerService" class="com.osp.biz.service.consumer.OspErrorcodeService">
+		<property name="ospErrorcodeService" ref="ospErrorcodeService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospDeviceConsumerService" class="com.osp.biz.service.consumer.OspDeviceService">
+		<property name="ospDeviceService" ref="ospDeviceService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospDebitcreditConsumerService" class="com.osp.biz.service.consumer.OspDebitcreditService">
+		<property name="ospDebitcreditService" ref="ospDebitcreditService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentrelationConsumerService" class="com.osp.biz.service.consumer.OspContentrelationService">
+		<property name="ospContentrelationService" ref="ospContentrelationService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentauditlogConsumerService" class="com.osp.biz.service.consumer.OspContentauditlogService">
+		<property name="ospContentauditlogService" ref="ospContentauditlogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentactionlogConsumerService" class="com.osp.biz.service.consumer.OspContentactionlogService">
+		<property name="ospContentactionlogService" ref="ospContentactionlogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentactionConsumerService" class="com.osp.biz.service.consumer.OspContentactionService">
+		<property name="ospContentactionService" ref="ospContentactionService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospContentConsumerService" class="com.osp.biz.service.consumer.OspContentService">
+		<property name="ospContentService" ref="ospContentService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospCatalogcontentConsumerService" class="com.osp.biz.service.consumer.OspCatalogcontentService">
+		<property name="ospCatalogcontentService" ref="ospCatalogcontentService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospCatalogactionlogConsumerService" class="com.osp.biz.service.consumer.OspCatalogactionlogService">
+		<property name="ospCatalogactionlogService" ref="ospCatalogactionlogService" />
+	</bean>
+
+
+
+
+
+	<bean id="ospCatalogConsumerService" class="com.osp.biz.service.consumer.OspCatalogService">
+		<property name="ospCatalogService" ref="ospCatalogService" />
+	</bean>
+
+
+	<bean id="keyToolConsumerService" class="com.aspire.wlan.key.service.consumer.KeyToolService">
+		<property name="keyToolService" ref="keyToolService" />
+	</bean>
+
+</beans>

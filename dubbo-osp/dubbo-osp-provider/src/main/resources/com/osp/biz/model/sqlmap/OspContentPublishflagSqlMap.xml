@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspContentPublishflag">
+
+    <typeAlias alias="ospContentPublishflag" type="com.osp.biz.model.OspContentPublishflag"/>
+
+    <resultMap id="ospContentPublishflagResult" class="ospContentPublishflag">
+        <result property="contentinnercode" column="contentinnercode"/>
+        <result property="version" column="version"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	contentinnercode ,
+        	version 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospContentPublishflag">
+    <![CDATA[
+        INSERT INTO
+        osp_content_publishflag (
+        	contentinnercode ,
+        	version 
+        ) VALUES (
+        	#contentinnercode# 
+        ,
+        	#version# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospContentPublishflag">
+    <![CDATA[
+        UPDATE osp_content_publishflag SET
+	        contentinnercode = #contentinnercode# ,
+	        version = #version# 
+        WHERE 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="contentinnercode">
+	              contentinnercode = #contentinnercode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="version">
+	              version = #version#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospContentPublishflag">
+
+        UPDATE osp_content_publishflag SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.String">
+    <![CDATA[
+        delete from osp_content_publishflag where
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospContentPublishflagResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publishflag 
+	        where 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="contentinnercode">
+	             contentinnercode = #contentinnercode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="version">
+	             version = #version#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_content_publishflag
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospContentPublishflagResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publishflag 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospContentPublishflagResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publishflag 
+	    ]]>
+	        order by 
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospContentPublishflagResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_publishflag 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

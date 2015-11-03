@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspCatalogactionlog">
+
+    <typeAlias alias="ospCatalogactionlog" type="com.osp.biz.model.OspCatalogactionlog"/>
+
+    <resultMap id="ospCatalogactionlogResult" class="ospCatalogactionlog">
+        <result property="id" column="id"/>
+        <result property="catalogid" column="catalogid"/>
+        <result property="ip" column="ip"/>
+        <result property="catalogname" column="catalogname"/>
+        <result property="username" column="username"/>
+        <result property="imei" column="imei"/>
+        <result property="actiontype" column="actiontype"/>
+        <result property="prop1" column="prop1"/>
+        <result property="prop2" column="prop2"/>
+        <result property="prop3" column="prop3"/>
+        <result property="prop4" column="prop4"/>
+        <result property="actiondate" column="actiondate"/>
+        <result property="actionplatform" column="actionplatform"/>
+        <result property="sessionid" column="sessionid"/>
+        <result property="innercode" column="innercode"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	catalogid ,
+        	ip ,
+        	catalogname ,
+        	username ,
+        	imei ,
+        	actiontype ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 ,
+        	actiondate ,
+        	actionplatform ,
+        	sessionid ,
+        	innercode 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospCatalogactionlog">
+    <![CDATA[
+        INSERT INTO
+        osp_catalogactionlog (
+        	id ,
+        	catalogid ,
+        	ip ,
+        	catalogname ,
+        	username ,
+        	imei ,
+        	actiontype ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 ,
+        	actiondate ,
+        	actionplatform ,
+        	sessionid ,
+        	innercode 
+        ) VALUES (
+          NULL
+        ,
+        	#catalogid# 
+        ,
+        	#ip# 
+        ,
+        	#catalogname# 
+        ,
+        	#username# 
+        ,
+        	#imei# 
+        ,
+        	#actiontype# 
+        ,
+        	#prop1# 
+        ,
+        	#prop2# 
+        ,
+        	#prop3# 
+        ,
+        	#prop4# 
+        ,
+        	#actiondate# 
+        ,
+        	#actionplatform# 
+        ,
+        	#sessionid# 
+        ,
+        	#innercode# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospCatalogactionlog">
+    <![CDATA[
+        UPDATE osp_catalogactionlog SET
+	        catalogid = #catalogid# ,
+	        ip = #ip# ,
+	        catalogname = #catalogname# ,
+	        username = #username# ,
+	        imei = #imei# ,
+	        actiontype = #actiontype# ,
+	        prop1 = #prop1# ,
+	        prop2 = #prop2# ,
+	        prop3 = #prop3# ,
+	        prop4 = #prop4# ,
+	        actiondate = #actiondate# ,
+	        actionplatform = #actionplatform# ,
+	        sessionid = #sessionid# ,
+	        innercode = #innercode# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="catalogid">
+	              catalogid = #catalogid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="ip">
+	              ip = #ip#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="catalogname">
+	              catalogname = #catalogname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="imei">
+	              imei = #imei#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="actiontype">
+	              actiontype = #actiontype#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop1">
+	              prop1 = #prop1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop2">
+	              prop2 = #prop2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop3">
+	              prop3 = #prop3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop4">
+	              prop4 = #prop4#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="actiondate">
+	              actiondate = #actiondate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="actionplatform">
+	              actionplatform = #actionplatform#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sessionid">
+	              sessionid = #sessionid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="innercode">
+	              innercode = #innercode#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospCatalogactionlog">
+
+        UPDATE osp_catalogactionlog SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_catalogactionlog where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospCatalogactionlogResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalogactionlog 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="catalogid">
+	             catalogid = #catalogid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="ip">
+	             ip = #ip#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="catalogname">
+	             catalogname = #catalogname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="imei">
+	             imei = #imei#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="actiontype">
+	             actiontype = #actiontype#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop1">
+	             prop1 = #prop1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop2">
+	             prop2 = #prop2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop3">
+	             prop3 = #prop3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop4">
+	             prop4 = #prop4#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="actiondate">
+	             actiondate = #actiondate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="actionplatform">
+	             actionplatform = #actionplatform#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sessionid">
+	             sessionid = #sessionid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="innercode">
+	             innercode = #innercode#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_catalogactionlog
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospCatalogactionlogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalogactionlog 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospCatalogactionlogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalogactionlog 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospCatalogactionlogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalogactionlog 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

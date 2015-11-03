@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspCatalog">
+
+    <typeAlias alias="ospCatalog" type="com.osp.biz.model.OspCatalog"/>
+
+    <resultMap id="ospCatalogResult" class="ospCatalog">
+        <result property="id" column="id"/>
+        <result property="parentid" column="parentid"/>
+        <result property="name" column="name"/>
+        <result property="innercode" column="innercode"/>
+        <result property="alias" column="alias"/>
+        <result property="summary" column="summary"/>
+        <result property="memo" column="memo"/>
+        <result property="catalogpath" column="catalogpath"/>
+        <result property="url" column="url"/>
+        <result property="imagepath" column="imagepath"/>
+        <result property="recommenddate" column="recommenddate"/>
+        <result property="recommendflag" column="recommendflag"/>
+        <result property="newflag" column="newflag"/>
+        <result property="publishflag" column="publishflag"/>
+        <result property="orderflag" column="orderflag"/>
+        <result property="type" column="type"/>
+        <result property="indextemplate" column="indextemplate"/>
+        <result property="listtemplate" column="listtemplate"/>
+        <result property="listnamerule" column="listnamerule"/>
+        <result property="detailtemplate" column="detailtemplate"/>
+        <result property="detailnamerule" column="detailnamerule"/>
+        <result property="templatefollow" column="templatefollow"/>
+        <result property="treelevel" column="treelevel"/>
+        <result property="childcount" column="childcount"/>
+        <result property="isleaf" column="isleaf"/>
+        <result property="total" column="total"/>
+        <result property="listpagesize" column="listpagesize"/>
+        <result property="listpage" column="listpage"/>
+        <result property="singleflag" column="singleflag"/>
+        <result property="dayscantimes" column="dayscantimes"/>
+        <result property="weekscantimes" column="weekscantimes"/>
+        <result property="monthscantimes" column="monthscantimes"/>
+        <result property="scantimes" column="scantimes"/>
+        <result property="deleteflag" column="deleteflag"/>
+        <result property="deletedate" column="deletedate"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="mobilelogo" column="mobilelogo"/>
+        <result property="wwwlogo" column="wwwlogo"/>
+        <result property="publishdate" column="publishdate"/>
+        <result property="downlinedate" column="downlinedate"/>
+        <result property="prop1" column="prop1"/>
+        <result property="prop2" column="prop2"/>
+        <result property="prop3" column="prop3"/>
+        <result property="prop4" column="prop4"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	parentid ,
+        	name ,
+        	innercode ,
+        	alias ,
+        	summary ,
+        	memo ,
+        	catalogpath ,
+        	url ,
+        	imagepath ,
+        	recommenddate ,
+        	recommendflag ,
+        	newflag ,
+        	publishflag ,
+        	orderflag ,
+        	type ,
+        	indextemplate ,
+        	listtemplate ,
+        	listnamerule ,
+        	detailtemplate ,
+        	detailnamerule ,
+        	templatefollow ,
+        	treelevel ,
+        	childcount ,
+        	isleaf ,
+        	total ,
+        	listpagesize ,
+        	listpage ,
+        	singleflag ,
+        	dayscantimes ,
+        	weekscantimes ,
+        	monthscantimes ,
+        	scantimes ,
+        	deleteflag ,
+        	deletedate ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate ,
+        	mobilelogo ,
+        	wwwlogo ,
+        	publishdate ,
+        	downlinedate ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospCatalog">
+    <![CDATA[
+        INSERT INTO
+        osp_catalog (
+        	id ,
+        	parentid ,
+        	name ,
+        	innercode ,
+        	alias ,
+        	summary ,
+        	memo ,
+        	catalogpath ,
+        	url ,
+        	imagepath ,
+        	recommenddate ,
+        	recommendflag ,
+        	newflag ,
+        	publishflag ,
+        	orderflag ,
+        	type ,
+        	indextemplate ,
+        	listtemplate ,
+        	listnamerule ,
+        	detailtemplate ,
+        	detailnamerule ,
+        	templatefollow ,
+        	treelevel ,
+        	childcount ,
+        	isleaf ,
+        	total ,
+        	listpagesize ,
+        	listpage ,
+        	singleflag ,
+        	dayscantimes ,
+        	weekscantimes ,
+        	monthscantimes ,
+        	scantimes ,
+        	deleteflag ,
+        	deletedate ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate ,
+        	mobilelogo ,
+        	wwwlogo ,
+        	publishdate ,
+        	downlinedate ,
+        	prop1 ,
+        	prop2 ,
+        	prop3 ,
+        	prop4 
+        ) VALUES (
+          NULL
+        ,
+        	#parentid# 
+        ,
+        	#name# 
+        ,
+        	#innercode# 
+        ,
+        	#alias# 
+        ,
+        	#summary# 
+        ,
+        	#memo# 
+        ,
+        	#catalogpath# 
+        ,
+        	#url# 
+        ,
+        	#imagepath# 
+        ,
+        	#recommenddate# 
+        ,
+        	#recommendflag# 
+        ,
+        	#newflag# 
+        ,
+        	#publishflag# 
+        ,
+        	#orderflag# 
+        ,
+        	#type# 
+        ,
+        	#indextemplate# 
+        ,
+        	#listtemplate# 
+        ,
+        	#listnamerule# 
+        ,
+        	#detailtemplate# 
+        ,
+        	#detailnamerule# 
+        ,
+        	#templatefollow# 
+        ,
+        	#treelevel# 
+        ,
+        	#childcount# 
+        ,
+        	#isleaf# 
+        ,
+        	#total# 
+        ,
+        	#listpagesize# 
+        ,
+        	#listpage# 
+        ,
+        	#singleflag# 
+        ,
+        	#dayscantimes# 
+        ,
+        	#weekscantimes# 
+        ,
+        	#monthscantimes# 
+        ,
+        	#scantimes# 
+        ,
+        	#deleteflag# 
+        ,
+        	#deletedate# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        ,
+        	#mobilelogo# 
+        ,
+        	#wwwlogo# 
+        ,
+        	#publishdate# 
+        ,
+        	#downlinedate# 
+        ,
+        	#prop1# 
+        ,
+        	#prop2# 
+        ,
+        	#prop3# 
+        ,
+        	#prop4# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospCatalog">
+    <![CDATA[
+        UPDATE osp_catalog SET
+	        parentid = #parentid# ,
+	        name = #name# ,
+	        innercode = #innercode# ,
+	        alias = #alias# ,
+	        summary = #summary# ,
+	        memo = #memo# ,
+	        catalogpath = #catalogpath# ,
+	        url = #url# ,
+	        imagepath = #imagepath# ,
+	        recommenddate = #recommenddate# ,
+	        recommendflag = #recommendflag# ,
+	        newflag = #newflag# ,
+	        publishflag = #publishflag# ,
+	        orderflag = #orderflag# ,
+	        type = #type# ,
+	        indextemplate = #indextemplate# ,
+	        listtemplate = #listtemplate# ,
+	        listnamerule = #listnamerule# ,
+	        detailtemplate = #detailtemplate# ,
+	        detailnamerule = #detailnamerule# ,
+	        templatefollow = #templatefollow# ,
+	        treelevel = #treelevel# ,
+	        childcount = #childcount# ,
+	        isleaf = #isleaf# ,
+	        total = #total# ,
+	        listpagesize = #listpagesize# ,
+	        listpage = #listpage# ,
+	        singleflag = #singleflag# ,
+	        dayscantimes = #dayscantimes# ,
+	        weekscantimes = #weekscantimes# ,
+	        monthscantimes = #monthscantimes# ,
+	        scantimes = #scantimes# ,
+	        deleteflag = #deleteflag# ,
+	        deletedate = #deletedate# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# ,
+	        mobilelogo = #mobilelogo# ,
+	        wwwlogo = #wwwlogo# ,
+	        publishdate = #publishdate# ,
+	        downlinedate = #downlinedate# ,
+	        prop1 = #prop1# ,
+	        prop2 = #prop2# ,
+	        prop3 = #prop3# ,
+	        prop4 = #prop4# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="parentid">
+	              parentid = #parentid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="name">
+	              name = #name#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="innercode">
+	              innercode = #innercode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="alias">
+	              alias = #alias#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="summary">
+	              summary = #summary#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="memo">
+	              memo = #memo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="catalogpath">
+	              catalogpath = #catalogpath#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="url">
+	              url = #url#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="imagepath">
+	              imagepath = #imagepath#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="recommenddate">
+	              recommenddate = #recommenddate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="recommendflag">
+	              recommendflag = #recommendflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="newflag">
+	              newflag = #newflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="publishflag">
+	              publishflag = #publishflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderflag">
+	              orderflag = #orderflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="type">
+	              type = #type#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="indextemplate">
+	              indextemplate = #indextemplate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="listtemplate">
+	              listtemplate = #listtemplate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="listnamerule">
+	              listnamerule = #listnamerule#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="detailtemplate">
+	              detailtemplate = #detailtemplate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="detailnamerule">
+	              detailnamerule = #detailnamerule#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="templatefollow">
+	              templatefollow = #templatefollow#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="treelevel">
+	              treelevel = #treelevel#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="childcount">
+	              childcount = #childcount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="isleaf">
+	              isleaf = #isleaf#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="total">
+	              total = #total#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="listpagesize">
+	              listpagesize = #listpagesize#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="listpage">
+	              listpage = #listpage#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="singleflag">
+	              singleflag = #singleflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayscantimes">
+	              dayscantimes = #dayscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekscantimes">
+	              weekscantimes = #weekscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthscantimes">
+	              monthscantimes = #monthscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="scantimes">
+	              scantimes = #scantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="deleteflag">
+	              deleteflag = #deleteflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="deletedate">
+	              deletedate = #deletedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="mobilelogo">
+	              mobilelogo = #mobilelogo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="wwwlogo">
+	              wwwlogo = #wwwlogo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="publishdate">
+	              publishdate = #publishdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="downlinedate">
+	              downlinedate = #downlinedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop1">
+	              prop1 = #prop1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop2">
+	              prop2 = #prop2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop3">
+	              prop3 = #prop3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="prop4">
+	              prop4 = #prop4#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospCatalog">
+
+        UPDATE osp_catalog SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_catalog where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospCatalogResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalog 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="parentid">
+	             parentid = #parentid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="name">
+	             name = #name#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="innercode">
+	             innercode = #innercode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="alias">
+	             alias = #alias#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="summary">
+	             summary = #summary#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="memo">
+	             memo = #memo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="catalogpath">
+	             catalogpath = #catalogpath#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="url">
+	             url = #url#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="imagepath">
+	             imagepath = #imagepath#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="recommenddate">
+	             recommenddate = #recommenddate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="recommendflag">
+	             recommendflag = #recommendflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="newflag">
+	             newflag = #newflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="publishflag">
+	             publishflag = #publishflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderflag">
+	             orderflag = #orderflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="type">
+	             type = #type#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="indextemplate">
+	             indextemplate = #indextemplate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="listtemplate">
+	             listtemplate = #listtemplate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="listnamerule">
+	             listnamerule = #listnamerule#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="detailtemplate">
+	             detailtemplate = #detailtemplate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="detailnamerule">
+	             detailnamerule = #detailnamerule#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="templatefollow">
+	             templatefollow = #templatefollow#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="treelevel">
+	             treelevel = #treelevel#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="childcount">
+	             childcount = #childcount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="isleaf">
+	             isleaf = #isleaf#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="total">
+	             total = #total#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="listpagesize">
+	             listpagesize = #listpagesize#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="listpage">
+	             listpage = #listpage#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="singleflag">
+	             singleflag = #singleflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayscantimes">
+	             dayscantimes = #dayscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekscantimes">
+	             weekscantimes = #weekscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthscantimes">
+	             monthscantimes = #monthscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="scantimes">
+	             scantimes = #scantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="deleteflag">
+	             deleteflag = #deleteflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="deletedate">
+	             deletedate = #deletedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="mobilelogo">
+	             mobilelogo = #mobilelogo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="wwwlogo">
+	             wwwlogo = #wwwlogo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="publishdate">
+	             publishdate = #publishdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="downlinedate">
+	             downlinedate = #downlinedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop1">
+	             prop1 = #prop1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop2">
+	             prop2 = #prop2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop3">
+	             prop3 = #prop3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="prop4">
+	             prop4 = #prop4#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_catalog
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospCatalogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalog 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+    <select id="getByInnercode" resultMap="ospCatalogResult" parameterClass="java.lang.String">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalog where innercode = #innercode#
+	    ]]>
+    </select>
+    
+	
+	
+	<select id="findAll" resultMap="ospCatalogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalog 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospCatalogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_catalog 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

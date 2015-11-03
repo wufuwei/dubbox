@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspOrder">
+
+    <typeAlias alias="ospOrder" type="com.osp.biz.model.OspOrder"/>
+
+    <resultMap id="ospOrderResult" class="ospOrder">
+        <result property="id" column="id"/>
+        <result property="orderid" column="orderid"/>
+        <result property="username" column="username"/>
+        <result property="isvalid" column="isvalid"/>
+        <result property="paystatus" column="paystatus"/>
+        <result property="sendstatus" column="sendstatus"/>
+        <result property="amount" column="amount"/>
+        <result property="sendfee" column="sendfee"/>
+        <result property="orderamount" column="orderamount"/>
+        <result property="orderdate" column="orderdate"/>
+        <result property="contentname" column="contentname"/>
+        <result property="contentmemo" column="contentmemo"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="district" column="district"/>
+        <result property="address" column="address"/>
+        <result property="zipcode" column="zipcode"/>
+        <result property="tel" column="tel"/>
+        <result property="mobile" column="mobile"/>
+        <result property="paydate" column="paydate"/>
+        <result property="sendbegindate" column="sendbegindate"/>
+        <result property="sendenddate" column="sendenddate"/>
+        <result property="sendtimeslice" column="sendtimeslice"/>
+        <result property="sendinfo" column="sendinfo"/>
+        <result property="sendtype" column="sendtype"/>
+        <result property="tradetype" column="tradetype"/>
+        <result property="tradedesc" column="tradedesc"/>
+        <result property="memo" column="memo"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	orderid ,
+        	username ,
+        	isvalid ,
+        	paystatus ,
+        	sendstatus ,
+        	amount ,
+        	sendfee ,
+        	orderamount ,
+        	orderdate ,
+        	contentname ,
+        	contentmemo ,
+        	province ,
+        	city ,
+        	district ,
+        	address ,
+        	zipcode ,
+        	tel ,
+        	mobile ,
+        	paydate ,
+        	sendbegindate ,
+        	sendenddate ,
+        	sendtimeslice ,
+        	sendinfo ,
+        	sendtype ,
+        	tradetype ,
+        	tradedesc ,
+        	memo ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospOrder">
+    <![CDATA[
+        INSERT INTO
+        osp_order (
+        	id ,
+        	orderid ,
+        	username ,
+        	isvalid ,
+        	paystatus ,
+        	sendstatus ,
+        	amount ,
+        	sendfee ,
+        	orderamount ,
+        	orderdate ,
+        	contentname ,
+        	contentmemo ,
+        	province ,
+        	city ,
+        	district ,
+        	address ,
+        	zipcode ,
+        	tel ,
+        	mobile ,
+        	paydate ,
+        	sendbegindate ,
+        	sendenddate ,
+        	sendtimeslice ,
+        	sendinfo ,
+        	sendtype ,
+        	tradetype ,
+        	tradedesc ,
+        	memo ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+        ) VALUES (
+          NULL
+        ,
+        	#orderid# 
+        ,
+        	#username# 
+        ,
+        	#isvalid# 
+        ,
+        	#paystatus# 
+        ,
+        	#sendstatus# 
+        ,
+        	#amount# 
+        ,
+        	#sendfee# 
+        ,
+        	#orderamount# 
+        ,
+        	#orderdate# 
+        ,
+        	#contentname# 
+        ,
+        	#contentmemo# 
+        ,
+        	#province# 
+        ,
+        	#city# 
+        ,
+        	#district# 
+        ,
+        	#address# 
+        ,
+        	#zipcode# 
+        ,
+        	#tel# 
+        ,
+        	#mobile# 
+        ,
+        	#paydate# 
+        ,
+        	#sendbegindate# 
+        ,
+        	#sendenddate# 
+        ,
+        	#sendtimeslice# 
+        ,
+        	#sendinfo# 
+        ,
+        	#sendtype# 
+        ,
+        	#tradetype# 
+        ,
+        	#tradedesc# 
+        ,
+        	#memo# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospOrder">
+    <![CDATA[
+        UPDATE osp_order SET
+	        orderid = #orderid# ,
+	        username = #username# ,
+	        isvalid = #isvalid# ,
+	        paystatus = #paystatus# ,
+	        sendstatus = #sendstatus# ,
+	        amount = #amount# ,
+	        sendfee = #sendfee# ,
+	        orderamount = #orderamount# ,
+	        orderdate = #orderdate# ,
+	        contentname = #contentname# ,
+	        contentmemo = #contentmemo# ,
+	        province = #province# ,
+	        city = #city# ,
+	        district = #district# ,
+	        address = #address# ,
+	        zipcode = #zipcode# ,
+	        tel = #tel# ,
+	        mobile = #mobile# ,
+	        paydate = #paydate# ,
+	        sendbegindate = #sendbegindate# ,
+	        sendenddate = #sendenddate# ,
+	        sendtimeslice = #sendtimeslice# ,
+	        sendinfo = #sendinfo# ,
+	        sendtype = #sendtype# ,
+	        tradetype = #tradetype# ,
+	        tradedesc = #tradedesc# ,
+	        memo = #memo# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="orderid">
+	              orderid = #orderid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="isvalid">
+	              isvalid = #isvalid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="paystatus">
+	              paystatus = #paystatus#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendstatus">
+	              sendstatus = #sendstatus#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="amount">
+	              amount = #amount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendfee">
+	              sendfee = #sendfee#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderamount">
+	              orderamount = #orderamount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderdate">
+	              orderdate = #orderdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentname">
+	              contentname = #contentname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentmemo">
+	              contentmemo = #contentmemo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="province">
+	              province = #province#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="city">
+	              city = #city#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="district">
+	              district = #district#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="address">
+	              address = #address#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="zipcode">
+	              zipcode = #zipcode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tel">
+	              tel = #tel#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="mobile">
+	              mobile = #mobile#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="paydate">
+	              paydate = #paydate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendbegindate">
+	              sendbegindate = #sendbegindate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendenddate">
+	              sendenddate = #sendenddate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendtimeslice">
+	              sendtimeslice = #sendtimeslice#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendinfo">
+	              sendinfo = #sendinfo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sendtype">
+	              sendtype = #sendtype#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradetype">
+	              tradetype = #tradetype#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradedesc">
+	              tradedesc = #tradedesc#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="memo">
+	              memo = #memo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospOrder">
+
+        UPDATE osp_order SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_order where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospOrderResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_order 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderid">
+	             orderid = #orderid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="isvalid">
+	             isvalid = #isvalid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="paystatus">
+	             paystatus = #paystatus#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendstatus">
+	             sendstatus = #sendstatus#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="amount">
+	             amount = #amount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendfee">
+	             sendfee = #sendfee#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderamount">
+	             orderamount = #orderamount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderdate">
+	             orderdate = #orderdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentname">
+	             contentname = #contentname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentmemo">
+	             contentmemo = #contentmemo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="province">
+	             province = #province#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="city">
+	             city = #city#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="district">
+	             district = #district#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="address">
+	             address = #address#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="zipcode">
+	             zipcode = #zipcode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tel">
+	             tel = #tel#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="mobile">
+	             mobile = #mobile#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="paydate">
+	             paydate = #paydate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendbegindate">
+	             sendbegindate = #sendbegindate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendenddate">
+	             sendenddate = #sendenddate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendtimeslice">
+	             sendtimeslice = #sendtimeslice#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendinfo">
+	             sendinfo = #sendinfo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sendtype">
+	             sendtype = #sendtype#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradetype">
+	             tradetype = #tradetype#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradedesc">
+	             tradedesc = #tradedesc#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="memo">
+	             memo = #memo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_order
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospOrderResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_order 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+    <select id="getByOrderid" resultMap="ospOrderResult" parameterClass="java.lang.String">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_order where orderid = #orderid#
+	    ]]>
+    </select>
+    
+	
+	
+	<select id="findAll" resultMap="ospOrderResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_order 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospOrderResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_order 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

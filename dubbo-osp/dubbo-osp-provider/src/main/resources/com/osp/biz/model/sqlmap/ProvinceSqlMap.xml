@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Province">
+
+    <typeAlias alias="province" type="com.osp.biz.model.Province"/>
+
+    <resultMap id="provinceResult" class="province">
+        <result property="provinceid" column="PROVINCEID"/>
+        <result property="provname" column="PROVNAME"/>
+        <result property="ldnum" column="LDNUM"/>
+        <result property="miscid" column="MISCID"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	PROVINCEID ,
+        	PROVNAME ,
+        	LDNUM ,
+        	MISCID 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="province">
+    <![CDATA[
+        INSERT INTO
+        province (
+        	PROVINCEID ,
+        	PROVNAME ,
+        	LDNUM ,
+        	MISCID 
+        ) VALUES (
+          NULL
+        ,
+        	#provname# 
+        ,
+        	#ldnum# 
+        ,
+        	#miscid# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="provinceid" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="province">
+    <![CDATA[
+        UPDATE province SET
+	        PROVNAME = #provname# ,
+	        LDNUM = #ldnum# ,
+	        MISCID = #miscid# 
+        WHERE 
+	        PROVINCEID = #provinceid# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="provname">
+	              PROVNAME = #provname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="ldnum">
+	              LDNUM = #ldnum#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="miscid">
+	              MISCID = #miscid#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="province">
+
+        UPDATE province SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        PROVINCEID = #provinceid# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Integer">
+    <![CDATA[
+        delete from province where
+        PROVINCEID = #provinceid# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="provinceResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from province 
+	        where 
+		        PROVINCEID = #provinceid# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="provinceid">
+	             PROVINCEID = #provinceid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="provname">
+	             PROVNAME = #provname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="ldnum">
+	             LDNUM = #ldnum#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="miscid">
+	             MISCID = #miscid#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from province
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="provinceResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from province 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        PROVINCEID desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="provinceResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from province 
+	    ]]>
+	        order by 
+		        PROVINCEID desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="provinceResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from province 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        PROVINCEID desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

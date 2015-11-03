@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspContentaction">
+
+    <typeAlias alias="ospContentaction" type="com.osp.biz.model.OspContentaction"/>
+
+    <resultMap id="ospContentactionResult" class="ospContentaction">
+        <result property="id" column="id"/>
+        <result property="contentid" column="contentid"/>
+        <result property="contentinnercode" column="contentinnercode"/>
+        <result property="ip" column="ip"/>
+        <result property="imei" column="imei"/>
+        <result property="phonemodel" column="phonemodel"/>
+        <result property="contentname" column="contentname"/>
+        <result property="username" column="username"/>
+        <result property="comment" column="comment"/>
+        <result property="mark" column="mark"/>
+        <result property="score" column="score"/>
+        <result property="propi1" column="propi1"/>
+        <result property="propi2" column="propi2"/>
+        <result property="propi3" column="propi3"/>
+        <result property="propi4" column="propi4"/>
+        <result property="props1" column="props1"/>
+        <result property="props2" column="props2"/>
+        <result property="props3" column="props3"/>
+        <result property="props4" column="props4"/>
+        <result property="actiondate" column="actiondate"/>
+        <result property="sessionid" column="sessionid"/>
+        <result property="deleteflag" column="deleteflag"/>
+        <result property="deletedate" column="deletedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	contentid ,
+        	contentinnercode ,
+        	ip ,
+        	imei ,
+        	phonemodel ,
+        	contentname ,
+        	username ,
+        	comment ,
+        	mark ,
+        	score ,
+        	propi1 ,
+        	propi2 ,
+        	propi3 ,
+        	propi4 ,
+        	props1 ,
+        	props2 ,
+        	props3 ,
+        	props4 ,
+        	actiondate ,
+        	sessionid ,
+        	deleteflag ,
+        	deletedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospContentaction">
+    <![CDATA[
+        INSERT INTO
+        osp_contentaction (
+        	id ,
+        	contentid ,
+        	contentinnercode ,
+        	ip ,
+        	imei ,
+        	phonemodel ,
+        	contentname ,
+        	username ,
+        	comment ,
+        	mark ,
+        	score ,
+        	propi1 ,
+        	propi2 ,
+        	propi3 ,
+        	propi4 ,
+        	props1 ,
+        	props2 ,
+        	props3 ,
+        	props4 ,
+        	actiondate ,
+        	sessionid ,
+        	deleteflag ,
+        	deletedate 
+        ) VALUES (
+          NULL
+        ,
+        	#contentid# 
+        ,
+        	#contentinnercode# 
+        ,
+        	#ip# 
+        ,
+        	#imei# 
+        ,
+        	#phonemodel# 
+        ,
+        	#contentname# 
+        ,
+        	#username# 
+        ,
+        	#comment# 
+        ,
+        	#mark# 
+        ,
+        	#score# 
+        ,
+        	#propi1# 
+        ,
+        	#propi2# 
+        ,
+        	#propi3# 
+        ,
+        	#propi4# 
+        ,
+        	#props1# 
+        ,
+        	#props2# 
+        ,
+        	#props3# 
+        ,
+        	#props4# 
+        ,
+        	#actiondate# 
+        ,
+        	#sessionid# 
+        ,
+        	#deleteflag# 
+        ,
+        	#deletedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospContentaction">
+    <![CDATA[
+        UPDATE osp_contentaction SET
+	        contentid = #contentid# ,
+	        contentinnercode = #contentinnercode# ,
+	        ip = #ip# ,
+	        imei = #imei# ,
+	        phonemodel = #phonemodel# ,
+	        contentname = #contentname# ,
+	        username = #username# ,
+	        comment = #comment# ,
+	        mark = #mark# ,
+	        score = #score# ,
+	        propi1 = #propi1# ,
+	        propi2 = #propi2# ,
+	        propi3 = #propi3# ,
+	        propi4 = #propi4# ,
+	        props1 = #props1# ,
+	        props2 = #props2# ,
+	        props3 = #props3# ,
+	        props4 = #props4# ,
+	        actiondate = #actiondate# ,
+	        sessionid = #sessionid# ,
+	        deleteflag = #deleteflag# ,
+	        deletedate = #deletedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="contentid">
+	              contentid = #contentid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentinnercode">
+	              contentinnercode = #contentinnercode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="ip">
+	              ip = #ip#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="imei">
+	              imei = #imei#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="phonemodel">
+	              phonemodel = #phonemodel#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentname">
+	              contentname = #contentname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="comment">
+	              comment = #comment#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="mark">
+	              mark = #mark#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="score">
+	              score = #score#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="propi1">
+	              propi1 = #propi1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="propi2">
+	              propi2 = #propi2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="propi3">
+	              propi3 = #propi3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="propi4">
+	              propi4 = #propi4#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="props1">
+	              props1 = #props1#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="props2">
+	              props2 = #props2#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="props3">
+	              props3 = #props3#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="props4">
+	              props4 = #props4#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="actiondate">
+	              actiondate = #actiondate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sessionid">
+	              sessionid = #sessionid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="deleteflag">
+	              deleteflag = #deleteflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="deletedate">
+	              deletedate = #deletedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospContentaction">
+
+        UPDATE osp_contentaction SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_contentaction where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospContentactionResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_contentaction 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentid">
+	             contentid = #contentid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentinnercode">
+	             contentinnercode = #contentinnercode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="ip">
+	             ip = #ip#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="imei">
+	             imei = #imei#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="phonemodel">
+	             phonemodel = #phonemodel#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentname">
+	             contentname = #contentname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="comment">
+	             comment = #comment#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="mark">
+	             mark = #mark#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="score">
+	             score = #score#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="propi1">
+	             propi1 = #propi1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="propi2">
+	             propi2 = #propi2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="propi3">
+	             propi3 = #propi3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="propi4">
+	             propi4 = #propi4#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="props1">
+	             props1 = #props1#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="props2">
+	             props2 = #props2#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="props3">
+	             props3 = #props3#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="props4">
+	             props4 = #props4#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="actiondate">
+	             actiondate = #actiondate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sessionid">
+	             sessionid = #sessionid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="deleteflag">
+	             deleteflag = #deleteflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="deletedate">
+	             deletedate = #deletedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_contentaction
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospContentactionResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_contentaction 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospContentactionResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_contentaction 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospContentactionResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_contentaction 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

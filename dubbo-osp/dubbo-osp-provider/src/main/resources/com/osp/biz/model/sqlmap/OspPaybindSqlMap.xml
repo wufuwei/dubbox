@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspPaybind">
+
+    <typeAlias alias="ospPaybind" type="com.osp.biz.model.OspPaybind"/>
+
+    <resultMap id="ospPaybindResult" class="ospPaybind">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="payaccount" column="payaccount"/>
+        <result property="type" column="type"/>
+        <result property="bindflag" column="bindflag"/>
+        <result property="defaultflag" column="defaultflag"/>
+        <result property="summary" column="summary"/>
+        <result property="binddate" column="binddate"/>
+        <result property="balance" column="balance"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	username ,
+        	payaccount ,
+        	type ,
+        	bindflag ,
+        	defaultflag ,
+        	summary ,
+        	binddate ,
+        	balance 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospPaybind">
+    <![CDATA[
+        INSERT INTO
+        osp_paybind (
+        	id ,
+        	username ,
+        	payaccount ,
+        	type ,
+        	bindflag ,
+        	defaultflag ,
+        	summary ,
+        	binddate ,
+        	balance 
+        ) VALUES (
+          NULL
+        ,
+        	#username# 
+        ,
+        	#payaccount# 
+        ,
+        	#type# 
+        ,
+        	#bindflag# 
+        ,
+        	#defaultflag# 
+        ,
+        	#summary# 
+        ,
+        	#binddate# 
+        ,
+        	#balance# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospPaybind">
+    <![CDATA[
+        UPDATE osp_paybind SET
+	        username = #username# ,
+	        payaccount = #payaccount# ,
+	        type = #type# ,
+	        bindflag = #bindflag# ,
+	        defaultflag = #defaultflag# ,
+	        summary = #summary# ,
+	        binddate = #binddate# ,
+	        balance = #balance# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="payaccount">
+	              payaccount = #payaccount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="type">
+	              type = #type#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="bindflag">
+	              bindflag = #bindflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="defaultflag">
+	              defaultflag = #defaultflag#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="summary">
+	              summary = #summary#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="binddate">
+	              binddate = #binddate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="balance">
+	              balance = #balance#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospPaybind">
+
+        UPDATE osp_paybind SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_paybind where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospPaybindResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_paybind 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="payaccount">
+	             payaccount = #payaccount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="type">
+	             type = #type#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="bindflag">
+	             bindflag = #bindflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="defaultflag">
+	             defaultflag = #defaultflag#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="summary">
+	             summary = #summary#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="binddate">
+	             binddate = #binddate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="balance">
+	             balance = #balance#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_paybind
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospPaybindResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_paybind 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospPaybindResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_paybind 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospPaybindResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_paybind 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

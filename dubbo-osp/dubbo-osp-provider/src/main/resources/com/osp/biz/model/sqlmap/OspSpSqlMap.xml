@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspSp">
+
+    <typeAlias alias="ospSp" type="com.osp.biz.model.OspSp"/>
+
+    <resultMap id="ospSpResult" class="ospSp">
+        <result property="id" column="id"/>
+        <result property="icpcode" column="icpcode"/>
+        <result property="icpservid" column="icpservid"/>
+        <result property="spname" column="spname"/>
+        <result property="fullname" column="fullname"/>
+        <result property="address" column="address"/>
+        <result property="email" column="email"/>
+        <result property="tel" column="tel"/>
+        <result property="mobile" column="mobile"/>
+        <result property="website" column="website"/>
+        <result property="connectuser" column="connectuser"/>
+        <result property="zipcode" column="zipcode"/>
+        <result property="fax" column="fax"/>
+        <result property="status" column="status"/>
+        <result property="summary" column="summary"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	icpcode ,
+        	icpservid ,
+        	spname ,
+        	fullname ,
+        	address ,
+        	email ,
+        	tel ,
+        	mobile ,
+        	website ,
+        	connectuser ,
+        	zipcode ,
+        	fax ,
+        	status ,
+        	summary ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospSp">
+    <![CDATA[
+        INSERT INTO
+        osp_sp (
+        	id ,
+        	icpcode ,
+        	icpservid ,
+        	spname ,
+        	fullname ,
+        	address ,
+        	email ,
+        	tel ,
+        	mobile ,
+        	website ,
+        	connectuser ,
+        	zipcode ,
+        	fax ,
+        	status ,
+        	summary ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+        ) VALUES (
+          NULL
+        ,
+        	#icpcode# 
+        ,
+        	#icpservid# 
+        ,
+        	#spname# 
+        ,
+        	#fullname# 
+        ,
+        	#address# 
+        ,
+        	#email# 
+        ,
+        	#tel# 
+        ,
+        	#mobile# 
+        ,
+        	#website# 
+        ,
+        	#connectuser# 
+        ,
+        	#zipcode# 
+        ,
+        	#fax# 
+        ,
+        	#status# 
+        ,
+        	#summary# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospSp">
+    <![CDATA[
+        UPDATE osp_sp SET
+	        icpcode = #icpcode# ,
+	        icpservid = #icpservid# ,
+	        spname = #spname# ,
+	        fullname = #fullname# ,
+	        address = #address# ,
+	        email = #email# ,
+	        tel = #tel# ,
+	        mobile = #mobile# ,
+	        website = #website# ,
+	        connectuser = #connectuser# ,
+	        zipcode = #zipcode# ,
+	        fax = #fax# ,
+	        status = #status# ,
+	        summary = #summary# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="icpcode">
+	              icpcode = #icpcode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="icpservid">
+	              icpservid = #icpservid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="spname">
+	              spname = #spname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="fullname">
+	              fullname = #fullname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="address">
+	              address = #address#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="email">
+	              email = #email#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tel">
+	              tel = #tel#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="mobile">
+	              mobile = #mobile#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="website">
+	              website = #website#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="connectuser">
+	              connectuser = #connectuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="zipcode">
+	              zipcode = #zipcode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="fax">
+	              fax = #fax#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="status">
+	              status = #status#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="summary">
+	              summary = #summary#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospSp">
+
+        UPDATE osp_sp SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_sp where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospSpResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_sp 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="icpcode">
+	             icpcode = #icpcode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="icpservid">
+	             icpservid = #icpservid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="spname">
+	             spname = #spname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="fullname">
+	             fullname = #fullname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="address">
+	             address = #address#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="email">
+	             email = #email#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tel">
+	             tel = #tel#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="mobile">
+	             mobile = #mobile#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="website">
+	             website = #website#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="connectuser">
+	             connectuser = #connectuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="zipcode">
+	             zipcode = #zipcode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="fax">
+	             fax = #fax#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="status">
+	             status = #status#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="summary">
+	             summary = #summary#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_sp
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospSpResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_sp 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospSpResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_sp 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospSpResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_sp 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

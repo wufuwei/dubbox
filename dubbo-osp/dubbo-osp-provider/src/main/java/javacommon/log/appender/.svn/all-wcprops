@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/WLAN_PROJECT/!svn/ver/11581/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender
+END
+ChkfileCreatorObserver.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/ChkfileCreatorObserver.java
+END
+JLogErrorHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/JLogErrorHandler.java
+END
+LogConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/LogConstants.java
+END
+TimeSizeRollingFileAppender.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/TimeSizeRollingFileAppender.java
+END
+TestBizTimeSizeRollingFileAppender.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/TestBizTimeSizeRollingFileAppender.java
+END
+BizLogContent.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/BizLogContent.java
+END
+MinuteRollingAppender.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/WLAN_PROJECT/!svn/ver/11581/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/MinuteRollingAppender.java
+END
+BizTimeSizeRollingFileAppender.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/BizTimeSizeRollingFileAppender.java
+END
+BizStaticFileAppender.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/WLAN_PROJECT/!svn/ver/5690/trunk/code/CSP/ciss/frame/java_src/com/framework/log/appender/BizStaticFileAppender.java
+END

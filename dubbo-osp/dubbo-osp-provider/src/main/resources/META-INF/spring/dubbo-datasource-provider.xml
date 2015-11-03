@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd"
+	default-lazy-init="true">
+	
+   <!-- 
+   <context:property-placeholder location="classpath:conf/*.properties"  ignore-unresolvable="true"   />
+   -->
+   <context:property-placeholder location="classpath:conf/datasource.properties"  ignore-unresolvable="true"   />
+   <context:property-placeholder location="classpath:conf/redis.properties"  ignore-unresolvable="true"   />
+   
+	<bean id="conn" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${db.driverclass}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${db.jdbcurl}</value>
+		</property>
+		<property name="user">
+			<value>${db.user}</value>
+		</property>
+		<property name="password">
+			<value>${db.password}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${db.minpoolsize}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${db.maxpoolsize}</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>${db.initialpoolsize}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${db.maxidletime}</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>${db.acquireincrement}</value>
+		</property>
+		<property name="maxStatements">
+			<value>${db.maxstatements}</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>${db.idleconnectiontestperiod}</value>
+		</property>
+		<property name="acquireRetryAttempts">
+			<value>${db.acquireretryattempts}</value>
+		</property>
+		<property name="breakAfterAcquireFailure">
+			<value>${db.breakafteracquirefailure}</value>
+		</property>
+		<property name="testConnectionOnCheckout">
+			<value>${db.testconnectiononcheckout}</value>
+		</property>
+		<property name="numHelperThreads">
+			<value>${db.numhelperthreads}</value>
+		</property>
+		<property name="maxStatementsPerConnection">
+			<value>${db.maxstatementsperconnection}</value>
+		</property>
+		<property name="debugUnreturnedConnectionStackTraces">
+			<value>${db.debugunreturnedconnectionstacktraces}</value>
+		</property>
+		<property name="description">
+			<value>${db.description}</value>
+		</property>
+		<property name="checkoutTimeout">
+			<value>${db.checkouttimeout}</value>
+		</property>
+		<property name="autoCommitOnClose">
+			<value>${db.autocommitonclose}</value>
+		</property>
+		<property name="acquireRetryDelay">
+			<value>${db.acquireretrydelay}</value>
+		</property>
+	</bean>
+
+</beans>

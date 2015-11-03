@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="128" maxSessions="10"
+		maxTransactions="5" useStatementNamespaces="true"
+		defaultStatementTimeout="300" statementCachingEnabled="true"
+		classInfoCacheEnabled="true" />
+		
+	
+<sqlMap resource="com/osp/biz/model/sqlmap/OspAppencodeSqlMap.xml" />
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentStatSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentPublishflagSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentPublishSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TableWlanUpdateInfoSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TableVersionDownloadLogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TablePlatformVersionInfoSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TablePlatformInfoSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TableChannelSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TsequenceSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TroleRightSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TroleSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TrightSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/ToprationLogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TassginRoleSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/TadministratorsSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/ProvinceSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspUpdateMacLogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspTradetypeSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspTraderesultSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspTerminalprefixSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspTerminalonlineSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspTerminalgroupCatalogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspTerminalgroupSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspSpSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspServerconfigSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspSearchkeylogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspSearchkeySqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspPullcontenttoSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspPullcontentlogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspPullcontentSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspPropertiesSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspPaybindSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspOrderitemSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspOrderSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspMemberactionlogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspMemberSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspErrorcodeSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspDeviceSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspDebitcreditSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentrelationSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentauditlogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentactionlogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentactionSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspContentSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspCatalogcontentSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspCatalogactionlogSqlMap.xml" />
+
+
+
+<sqlMap resource="com/osp/biz/model/sqlmap/OspCatalogSqlMap.xml" />
+
+
+
+	
+</sqlMapConfig>

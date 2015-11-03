@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspSearchkeylog">
+
+    <typeAlias alias="ospSearchkeylog" type="com.osp.biz.model.OspSearchkeylog"/>
+
+    <resultMap id="ospSearchkeylogResult" class="ospSearchkeylog">
+        <result property="id" column="id"/>
+        <result property="imei" column="imei"/>
+        <result property="searchkey" column="searchkey"/>
+        <result property="ip" column="ip"/>
+        <result property="searchdate" column="searchdate"/>
+        <result property="actionplatform" column="actionplatform"/>
+        <result property="sessionid" column="sessionid"/>
+        <result property="username" column="username"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	imei ,
+        	searchkey ,
+        	ip ,
+        	searchdate ,
+        	actionplatform ,
+        	sessionid ,
+        	username 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospSearchkeylog">
+    <![CDATA[
+        INSERT INTO
+        osp_searchkeylog (
+        	id ,
+        	imei ,
+        	searchkey ,
+        	ip ,
+        	searchdate ,
+        	actionplatform ,
+        	sessionid ,
+        	username 
+        ) VALUES (
+          NULL
+        ,
+        	#imei# 
+        ,
+        	#searchkey# 
+        ,
+        	#ip# 
+        ,
+        	#searchdate# 
+        ,
+        	#actionplatform# 
+        ,
+        	#sessionid# 
+        ,
+        	#username# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospSearchkeylog">
+    <![CDATA[
+        UPDATE osp_searchkeylog SET
+	        imei = #imei# ,
+	        searchkey = #searchkey# ,
+	        ip = #ip# ,
+	        searchdate = #searchdate# ,
+	        actionplatform = #actionplatform# ,
+	        sessionid = #sessionid# ,
+	        username = #username# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="imei">
+	              imei = #imei#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="searchkey">
+	              searchkey = #searchkey#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="ip">
+	              ip = #ip#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="searchdate">
+	              searchdate = #searchdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="actionplatform">
+	              actionplatform = #actionplatform#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sessionid">
+	              sessionid = #sessionid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospSearchkeylog">
+
+        UPDATE osp_searchkeylog SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_searchkeylog where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospSearchkeylogResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_searchkeylog 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="imei">
+	             imei = #imei#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="searchkey">
+	             searchkey = #searchkey#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="ip">
+	             ip = #ip#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="searchdate">
+	             searchdate = #searchdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="actionplatform">
+	             actionplatform = #actionplatform#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sessionid">
+	             sessionid = #sessionid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_searchkeylog
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospSearchkeylogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_searchkeylog 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospSearchkeylogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_searchkeylog 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospSearchkeylogResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_searchkeylog 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

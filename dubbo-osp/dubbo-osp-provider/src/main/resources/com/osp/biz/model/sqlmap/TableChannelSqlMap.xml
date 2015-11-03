@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TableChannel">
+
+    <typeAlias alias="tableChannel" type="com.osp.biz.model.TableChannel"/>
+
+    <resultMap id="tableChannelResult" class="tableChannel">
+        <result property="id" column="id"/>
+        <result property="channelcode" column="channelcode"/>
+        <result property="channelname" column="channelname"/>
+        <result property="channeldesc" column="channeldesc"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	channelcode ,
+        	channelname ,
+        	channeldesc ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="tableChannel">
+    <![CDATA[
+        INSERT INTO
+        table_channel (
+        	id ,
+        	channelcode ,
+        	channelname ,
+        	channeldesc ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+        ) VALUES (
+          NULL
+        ,
+        	#channelcode# 
+        ,
+        	#channelname# 
+        ,
+        	#channeldesc# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="tableChannel">
+    <![CDATA[
+        UPDATE table_channel SET
+	        channelcode = #channelcode# ,
+	        channelname = #channelname# ,
+	        channeldesc = #channeldesc# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="channelcode">
+	              channelcode = #channelcode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="channelname">
+	              channelname = #channelname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="channeldesc">
+	              channeldesc = #channeldesc#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="tableChannel">
+
+        UPDATE table_channel SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Integer">
+    <![CDATA[
+        delete from table_channel where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="tableChannelResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_channel 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="channelcode">
+	             channelcode = #channelcode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="channelname">
+	             channelname = #channelname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="channeldesc">
+	             channeldesc = #channeldesc#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from table_channel
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="tableChannelResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_channel 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="tableChannelResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_channel 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="tableChannelResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from table_channel 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

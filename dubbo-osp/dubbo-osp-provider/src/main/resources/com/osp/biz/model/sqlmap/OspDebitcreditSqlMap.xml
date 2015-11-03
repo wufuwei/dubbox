@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspDebitcredit">
+
+    <typeAlias alias="ospDebitcredit" type="com.osp.biz.model.OspDebitcredit"/>
+
+    <resultMap id="ospDebitcreditResult" class="ospDebitcredit">
+        <result property="id" column="id"/>
+        <result property="tradeid" column="tradeid"/>
+        <result property="orderid" column="orderid"/>
+        <result property="tradedate" column="tradedate"/>
+        <result property="username" column="username"/>
+        <result property="payaccount" column="payaccount"/>
+        <result property="tradename" column="tradename"/>
+        <result property="tradememo" column="tradememo"/>
+        <result property="debit" column="debit"/>
+        <result property="credit" column="credit"/>
+        <result property="balance" column="balance"/>
+        <result property="tradetype" column="tradetype"/>
+        <result property="tradeaccount" column="tradeaccount"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	tradeid ,
+        	orderid ,
+        	tradedate ,
+        	username ,
+        	payaccount ,
+        	tradename ,
+        	tradememo ,
+        	debit ,
+        	credit ,
+        	balance ,
+        	tradetype ,
+        	tradeaccount 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospDebitcredit">
+    <![CDATA[
+        INSERT INTO
+        osp_debitcredit (
+        	id ,
+        	tradeid ,
+        	orderid ,
+        	tradedate ,
+        	username ,
+        	payaccount ,
+        	tradename ,
+        	tradememo ,
+        	debit ,
+        	credit ,
+        	balance ,
+        	tradetype ,
+        	tradeaccount 
+        ) VALUES (
+          NULL
+        ,
+        	#tradeid# 
+        ,
+        	#orderid# 
+        ,
+        	#tradedate# 
+        ,
+        	#username# 
+        ,
+        	#payaccount# 
+        ,
+        	#tradename# 
+        ,
+        	#tradememo# 
+        ,
+        	#debit# 
+        ,
+        	#credit# 
+        ,
+        	#balance# 
+        ,
+        	#tradetype# 
+        ,
+        	#tradeaccount# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospDebitcredit">
+    <![CDATA[
+        UPDATE osp_debitcredit SET
+	        tradeid = #tradeid# ,
+	        orderid = #orderid# ,
+	        tradedate = #tradedate# ,
+	        username = #username# ,
+	        payaccount = #payaccount# ,
+	        tradename = #tradename# ,
+	        tradememo = #tradememo# ,
+	        debit = #debit# ,
+	        credit = #credit# ,
+	        balance = #balance# ,
+	        tradetype = #tradetype# ,
+	        tradeaccount = #tradeaccount# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="tradeid">
+	              tradeid = #tradeid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderid">
+	              orderid = #orderid#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradedate">
+	              tradedate = #tradedate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="payaccount">
+	              payaccount = #payaccount#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradename">
+	              tradename = #tradename#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradememo">
+	              tradememo = #tradememo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="debit">
+	              debit = #debit#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="credit">
+	              credit = #credit#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="balance">
+	              balance = #balance#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradetype">
+	              tradetype = #tradetype#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="tradeaccount">
+	              tradeaccount = #tradeaccount#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospDebitcredit">
+
+        UPDATE osp_debitcredit SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Long">
+    <![CDATA[
+        delete from osp_debitcredit where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospDebitcreditResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_debitcredit 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradeid">
+	             tradeid = #tradeid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderid">
+	             orderid = #orderid#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradedate">
+	             tradedate = #tradedate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="payaccount">
+	             payaccount = #payaccount#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradename">
+	             tradename = #tradename#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradememo">
+	             tradememo = #tradememo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="debit">
+	             debit = #debit#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="credit">
+	             credit = #credit#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="balance">
+	             balance = #balance#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradetype">
+	             tradetype = #tradetype#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="tradeaccount">
+	             tradeaccount = #tradeaccount#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_debitcredit
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospDebitcreditResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_debitcredit 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+    <select id="getByTradeid" resultMap="ospDebitcreditResult" parameterClass="java.lang.String">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_debitcredit where tradeid = #tradeid#
+	    ]]>
+    </select>
+    
+	
+	
+	<select id="findAll" resultMap="ospDebitcreditResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_debitcredit 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospDebitcreditResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_debitcredit 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

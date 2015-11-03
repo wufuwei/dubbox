@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspTraderesult">
+
+    <typeAlias alias="ospTraderesult" type="com.osp.biz.model.OspTraderesult"/>
+
+    <resultMap id="ospTraderesultResult" class="ospTraderesult">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="orderId" column="orderId"/>
+        <result property="result" column="result"/>
+        <result property="msg" column="msg"/>
+        <result property="trAmt" column="trAmt"/>
+        <result property="clrDate" column="clrDate"/>
+        <result property="actionNo" column="actionNo"/>
+        <result property="balance" column="balance"/>
+        <result property="cardNo" column="cardNo"/>
+        <result property="batchNo" column="batchNo"/>
+        <result property="sign" column="sign"/>
+        <result property="paydate" column="paydate"/>
+        <result property="contentname" column="contentname"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updateuser" column="updateuser"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	id ,
+        	username ,
+        	orderId ,
+        	result ,
+        	msg ,
+        	trAmt ,
+        	clrDate ,
+        	actionNo ,
+        	balance ,
+        	cardNo ,
+        	batchNo ,
+        	sign ,
+        	paydate ,
+        	contentname ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospTraderesult">
+    <![CDATA[
+        INSERT INTO
+        osp_traderesult (
+        	id ,
+        	username ,
+        	orderId ,
+        	result ,
+        	msg ,
+        	trAmt ,
+        	clrDate ,
+        	actionNo ,
+        	balance ,
+        	cardNo ,
+        	batchNo ,
+        	sign ,
+        	paydate ,
+        	contentname ,
+        	createuser ,
+        	createdate ,
+        	updateuser ,
+        	updatedate 
+        ) VALUES (
+          NULL
+        ,
+        	#username# 
+        ,
+        	#orderId# 
+        ,
+        	#result# 
+        ,
+        	#msg# 
+        ,
+        	#trAmt# 
+        ,
+        	#clrDate# 
+        ,
+        	#actionNo# 
+        ,
+        	#balance# 
+        ,
+        	#cardNo# 
+        ,
+        	#batchNo# 
+        ,
+        	#sign# 
+        ,
+        	#paydate# 
+        ,
+        	#contentname# 
+        ,
+        	#createuser# 
+        ,
+        	#createdate# 
+        ,
+        	#updateuser# 
+        ,
+        	#updatedate# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="id" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospTraderesult">
+    <![CDATA[
+        UPDATE osp_traderesult SET
+	        username = #username# ,
+	        orderId = #orderId# ,
+	        result = #result# ,
+	        msg = #msg# ,
+	        trAmt = #trAmt# ,
+	        clrDate = #clrDate# ,
+	        actionNo = #actionNo# ,
+	        balance = #balance# ,
+	        cardNo = #cardNo# ,
+	        batchNo = #batchNo# ,
+	        sign = #sign# ,
+	        paydate = #paydate# ,
+	        contentname = #contentname# ,
+	        createuser = #createuser# ,
+	        createdate = #createdate# ,
+	        updateuser = #updateuser# ,
+	        updatedate = #updatedate# 
+        WHERE 
+	        id = #id# 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="username">
+	              username = #username#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="orderId">
+	              orderId = #orderId#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="result">
+	              result = #result#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="msg">
+	              msg = #msg#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="trAmt">
+	              trAmt = #trAmt#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="clrDate">
+	              clrDate = #clrDate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="actionNo">
+	              actionNo = #actionNo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="balance">
+	              balance = #balance#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="cardNo">
+	              cardNo = #cardNo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="batchNo">
+	              batchNo = #batchNo#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="sign">
+	              sign = #sign#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="paydate">
+	              paydate = #paydate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="contentname">
+	              contentname = #contentname#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createuser">
+	              createuser = #createuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="createdate">
+	              createdate = #createdate#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updateuser">
+	              updateuser = #updateuser#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="updatedate">
+	              updatedate = #updatedate#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospTraderesult">
+
+        UPDATE osp_traderesult SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+	        id = #id# 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.Integer">
+    <![CDATA[
+        delete from osp_traderesult where
+        id = #id# 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospTraderesultResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_traderesult 
+	        where 
+		        id = #id# 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="id">
+	             id = #id#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="username">
+	             username = #username#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="orderId">
+	             orderId = #orderId#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="result">
+	             result = #result#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="msg">
+	             msg = #msg#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="trAmt">
+	             trAmt = #trAmt#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="clrDate">
+	             clrDate = #clrDate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="actionNo">
+	             actionNo = #actionNo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="balance">
+	             balance = #balance#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="cardNo">
+	             cardNo = #cardNo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="batchNo">
+	             batchNo = #batchNo#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="sign">
+	             sign = #sign#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="paydate">
+	             paydate = #paydate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="contentname">
+	             contentname = #contentname#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createuser">
+	             createuser = #createuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="createdate">
+	             createdate = #createdate#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updateuser">
+	             updateuser = #updateuser#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="updatedate">
+	             updatedate = #updatedate#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_traderesult
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospTraderesultResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_traderesult 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospTraderesultResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_traderesult 
+	    ]]>
+	        order by 
+		        id desc
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospTraderesultResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_traderesult 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+		        id desc
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>

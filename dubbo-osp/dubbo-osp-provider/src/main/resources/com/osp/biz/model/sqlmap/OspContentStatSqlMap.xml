@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OspContentStat">
+
+    <typeAlias alias="ospContentStat" type="com.osp.biz.model.OspContentStat"/>
+
+    <resultMap id="ospContentStatResult" class="ospContentStat">
+        <result property="contentinnercode" column="contentinnercode"/>
+        <result property="daydownloadtimes" column="daydownloadtimes"/>
+        <result property="weekdownloadtimes" column="weekdownloadtimes"/>
+        <result property="monthdownloadtimes" column="monthdownloadtimes"/>
+        <result property="downloadtimes" column="downloadtimes"/>
+        <result property="daysearchtimes" column="daysearchtimes"/>
+        <result property="weeksearchtimes" column="weeksearchtimes"/>
+        <result property="monthsearchtimes" column="monthsearchtimes"/>
+        <result property="searchtimes" column="searchtimes"/>
+        <result property="dayscantimes" column="dayscantimes"/>
+        <result property="weekscantimes" column="weekscantimes"/>
+        <result property="monthscantimes" column="monthscantimes"/>
+        <result property="scantimes" column="scantimes"/>
+        <result property="dayordertimes" column="dayordertimes"/>
+        <result property="weekordertimes" column="weekordertimes"/>
+        <result property="monthordertimes" column="monthordertimes"/>
+        <result property="ordertimes" column="ordertimes"/>
+        <result property="daycommenttimes" column="daycommenttimes"/>
+        <result property="weekcommenttimes" column="weekcommenttimes"/>
+        <result property="monthcommenttimes" column="monthcommenttimes"/>
+        <result property="commenttimes" column="commenttimes"/>
+        <result property="daymarktimes" column="daymarktimes"/>
+        <result property="weekmarktimes" column="weekmarktimes"/>
+        <result property="monthmarktimes" column="monthmarktimes"/>
+        <result property="marktimes" column="marktimes"/>
+        <result property="dayscoretimes" column="dayscoretimes"/>
+        <result property="weekscoretimes" column="weekscoretimes"/>
+        <result property="monthscoretimes" column="monthscoretimes"/>
+        <result property="scoretimes" column="scoretimes"/>
+        <result property="daycommendtimes" column="daycommendtimes"/>
+        <result property="weekcommendtimes" column="weekcommendtimes"/>
+        <result property="monthcommendtimes" column="monthcommendtimes"/>
+        <result property="commendtimes" column="commendtimes"/>
+        <result property="daycollecttimes" column="daycollecttimes"/>
+        <result property="weekcollecttimes" column="weekcollecttimes"/>
+        <result property="monthcollecttimes" column="monthcollecttimes"/>
+        <result property="collecttimes" column="collecttimes"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="commonColumns">
+	    <![CDATA[
+        	contentinnercode ,
+        	daydownloadtimes ,
+        	weekdownloadtimes ,
+        	monthdownloadtimes ,
+        	downloadtimes ,
+        	daysearchtimes ,
+        	weeksearchtimes ,
+        	monthsearchtimes ,
+        	searchtimes ,
+        	dayscantimes ,
+        	weekscantimes ,
+        	monthscantimes ,
+        	scantimes ,
+        	dayordertimes ,
+        	weekordertimes ,
+        	monthordertimes ,
+        	ordertimes ,
+        	daycommenttimes ,
+        	weekcommenttimes ,
+        	monthcommenttimes ,
+        	commenttimes ,
+        	daymarktimes ,
+        	weekmarktimes ,
+        	monthmarktimes ,
+        	marktimes ,
+        	dayscoretimes ,
+        	weekscoretimes ,
+        	monthscoretimes ,
+        	scoretimes ,
+        	daycommendtimes ,
+        	weekcommendtimes ,
+        	monthcommendtimes ,
+        	commendtimes ,
+        	daycollecttimes ,
+        	weekcollecttimes ,
+        	monthcollecttimes ,
+        	collecttimes 
+	    ]]>
+	</sql>
+	
+    <insert id="insert" parameterClass="ospContentStat">
+    <![CDATA[
+        INSERT INTO
+        osp_content_stat (
+        	contentinnercode ,
+        	daydownloadtimes ,
+        	weekdownloadtimes ,
+        	monthdownloadtimes ,
+        	downloadtimes ,
+        	daysearchtimes ,
+        	weeksearchtimes ,
+        	monthsearchtimes ,
+        	searchtimes ,
+        	dayscantimes ,
+        	weekscantimes ,
+        	monthscantimes ,
+        	scantimes ,
+        	dayordertimes ,
+        	weekordertimes ,
+        	monthordertimes ,
+        	ordertimes ,
+        	daycommenttimes ,
+        	weekcommenttimes ,
+        	monthcommenttimes ,
+        	commenttimes ,
+        	daymarktimes ,
+        	weekmarktimes ,
+        	monthmarktimes ,
+        	marktimes ,
+        	dayscoretimes ,
+        	weekscoretimes ,
+        	monthscoretimes ,
+        	scoretimes ,
+        	daycommendtimes ,
+        	weekcommendtimes ,
+        	monthcommendtimes ,
+        	commendtimes ,
+        	daycollecttimes ,
+        	weekcollecttimes ,
+        	monthcollecttimes ,
+        	collecttimes 
+        ) VALUES (
+        	#contentinnercode# 
+        ,
+        	#daydownloadtimes# 
+        ,
+        	#weekdownloadtimes# 
+        ,
+        	#monthdownloadtimes# 
+        ,
+        	#downloadtimes# 
+        ,
+        	#daysearchtimes# 
+        ,
+        	#weeksearchtimes# 
+        ,
+        	#monthsearchtimes# 
+        ,
+        	#searchtimes# 
+        ,
+        	#dayscantimes# 
+        ,
+        	#weekscantimes# 
+        ,
+        	#monthscantimes# 
+        ,
+        	#scantimes# 
+        ,
+        	#dayordertimes# 
+        ,
+        	#weekordertimes# 
+        ,
+        	#monthordertimes# 
+        ,
+        	#ordertimes# 
+        ,
+        	#daycommenttimes# 
+        ,
+        	#weekcommenttimes# 
+        ,
+        	#monthcommenttimes# 
+        ,
+        	#commenttimes# 
+        ,
+        	#daymarktimes# 
+        ,
+        	#weekmarktimes# 
+        ,
+        	#monthmarktimes# 
+        ,
+        	#marktimes# 
+        ,
+        	#dayscoretimes# 
+        ,
+        	#weekscoretimes# 
+        ,
+        	#monthscoretimes# 
+        ,
+        	#scoretimes# 
+        ,
+        	#daycommendtimes# 
+        ,
+        	#weekcommendtimes# 
+        ,
+        	#monthcommendtimes# 
+        ,
+        	#commendtimes# 
+        ,
+        	#daycollecttimes# 
+        ,
+        	#weekcollecttimes# 
+        ,
+        	#monthcollecttimes# 
+        ,
+        	#collecttimes# 
+        
+        )
+    ]]>
+    <!--
+    mysql:		type="post" SELECT  select last_insert_id()
+    sqlserver:	type="post" SELECT  @@identity  AS  ID
+    oracle:		type="pre" 	SELECT  sequenceName.nextval AS ID FROM DUAL
+    DB2:		type="pre"	values nextval for sequenceName
+    
+        <selectKey resultClass="java.lang.Long" type="post" keyProperty="" >
+            select last_insert_id()
+        </selectKey>
+       --> 
+    </insert>
+
+    <update id="update" parameterClass="ospContentStat">
+    <![CDATA[
+        UPDATE osp_content_stat SET
+	        contentinnercode = #contentinnercode# ,
+	        daydownloadtimes = #daydownloadtimes# ,
+	        weekdownloadtimes = #weekdownloadtimes# ,
+	        monthdownloadtimes = #monthdownloadtimes# ,
+	        downloadtimes = #downloadtimes# ,
+	        daysearchtimes = #daysearchtimes# ,
+	        weeksearchtimes = #weeksearchtimes# ,
+	        monthsearchtimes = #monthsearchtimes# ,
+	        searchtimes = #searchtimes# ,
+	        dayscantimes = #dayscantimes# ,
+	        weekscantimes = #weekscantimes# ,
+	        monthscantimes = #monthscantimes# ,
+	        scantimes = #scantimes# ,
+	        dayordertimes = #dayordertimes# ,
+	        weekordertimes = #weekordertimes# ,
+	        monthordertimes = #monthordertimes# ,
+	        ordertimes = #ordertimes# ,
+	        daycommenttimes = #daycommenttimes# ,
+	        weekcommenttimes = #weekcommenttimes# ,
+	        monthcommenttimes = #monthcommenttimes# ,
+	        commenttimes = #commenttimes# ,
+	        daymarktimes = #daymarktimes# ,
+	        weekmarktimes = #weekmarktimes# ,
+	        monthmarktimes = #monthmarktimes# ,
+	        marktimes = #marktimes# ,
+	        dayscoretimes = #dayscoretimes# ,
+	        weekscoretimes = #weekscoretimes# ,
+	        monthscoretimes = #monthscoretimes# ,
+	        scoretimes = #scoretimes# ,
+	        daycommendtimes = #daycommendtimes# ,
+	        weekcommendtimes = #weekcommendtimes# ,
+	        monthcommendtimes = #monthcommendtimes# ,
+	        commendtimes = #commendtimes# ,
+	        daycollecttimes = #daycollecttimes# ,
+	        weekcollecttimes = #weekcollecttimes# ,
+	        monthcollecttimes = #monthcollecttimes# ,
+	        collecttimes = #collecttimes# 
+        WHERE 
+    ]]>
+    </update>
+    <sql id="dynamicColumn">
+	    <dynamic prepend=" ">
+	    	    <isNotEmpty prepend="," property="contentinnercode">
+	              contentinnercode = #contentinnercode#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daydownloadtimes">
+	              daydownloadtimes = #daydownloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekdownloadtimes">
+	              weekdownloadtimes = #weekdownloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthdownloadtimes">
+	              monthdownloadtimes = #monthdownloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="downloadtimes">
+	              downloadtimes = #downloadtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daysearchtimes">
+	              daysearchtimes = #daysearchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weeksearchtimes">
+	              weeksearchtimes = #weeksearchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthsearchtimes">
+	              monthsearchtimes = #monthsearchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="searchtimes">
+	              searchtimes = #searchtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayscantimes">
+	              dayscantimes = #dayscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekscantimes">
+	              weekscantimes = #weekscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthscantimes">
+	              monthscantimes = #monthscantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="scantimes">
+	              scantimes = #scantimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayordertimes">
+	              dayordertimes = #dayordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekordertimes">
+	              weekordertimes = #weekordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthordertimes">
+	              monthordertimes = #monthordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="ordertimes">
+	              ordertimes = #ordertimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daycommenttimes">
+	              daycommenttimes = #daycommenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekcommenttimes">
+	              weekcommenttimes = #weekcommenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthcommenttimes">
+	              monthcommenttimes = #monthcommenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="commenttimes">
+	              commenttimes = #commenttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daymarktimes">
+	              daymarktimes = #daymarktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekmarktimes">
+	              weekmarktimes = #weekmarktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthmarktimes">
+	              monthmarktimes = #monthmarktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="marktimes">
+	              marktimes = #marktimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="dayscoretimes">
+	              dayscoretimes = #dayscoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekscoretimes">
+	              weekscoretimes = #weekscoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthscoretimes">
+	              monthscoretimes = #monthscoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="scoretimes">
+	              scoretimes = #scoretimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daycommendtimes">
+	              daycommendtimes = #daycommendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekcommendtimes">
+	              weekcommendtimes = #weekcommendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthcommendtimes">
+	              monthcommendtimes = #monthcommendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="commendtimes">
+	              commendtimes = #commendtimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="daycollecttimes">
+	              daycollecttimes = #daycollecttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="weekcollecttimes">
+	              weekcollecttimes = #weekcollecttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="monthcollecttimes">
+	              monthcollecttimes = #monthcollecttimes#
+	      	  </isNotEmpty>
+	    	    <isNotEmpty prepend="," property="collecttimes">
+	              collecttimes = #collecttimes#
+	      	  </isNotEmpty>
+	    </dynamic>	
+	</sql> 
+    <update id="updateDynamic" parameterClass="ospContentStat">
+
+        UPDATE osp_content_stat SET
+          <include refid="dynamicColumn"/>   
+        WHERE 
+
+    </update>
+
+
+
+    <delete id="delete" parameterClass="java.lang.String">
+    <![CDATA[
+        delete from osp_content_stat where
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="ospContentStatResult">
+	    select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_stat 
+	        where 
+	    ]]>
+    </select>
+
+	<sql id="dynamicWhere">
+	    <dynamic prepend="WHERE">
+	       <isNotEmpty prepend="AND" property="contentinnercode">
+	             contentinnercode = #contentinnercode#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daydownloadtimes">
+	             daydownloadtimes = #daydownloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekdownloadtimes">
+	             weekdownloadtimes = #weekdownloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthdownloadtimes">
+	             monthdownloadtimes = #monthdownloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="downloadtimes">
+	             downloadtimes = #downloadtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daysearchtimes">
+	             daysearchtimes = #daysearchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weeksearchtimes">
+	             weeksearchtimes = #weeksearchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthsearchtimes">
+	             monthsearchtimes = #monthsearchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="searchtimes">
+	             searchtimes = #searchtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayscantimes">
+	             dayscantimes = #dayscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekscantimes">
+	             weekscantimes = #weekscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthscantimes">
+	             monthscantimes = #monthscantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="scantimes">
+	             scantimes = #scantimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayordertimes">
+	             dayordertimes = #dayordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekordertimes">
+	             weekordertimes = #weekordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthordertimes">
+	             monthordertimes = #monthordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="ordertimes">
+	             ordertimes = #ordertimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daycommenttimes">
+	             daycommenttimes = #daycommenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekcommenttimes">
+	             weekcommenttimes = #weekcommenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthcommenttimes">
+	             monthcommenttimes = #monthcommenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="commenttimes">
+	             commenttimes = #commenttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daymarktimes">
+	             daymarktimes = #daymarktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekmarktimes">
+	             weekmarktimes = #weekmarktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthmarktimes">
+	             monthmarktimes = #monthmarktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="marktimes">
+	             marktimes = #marktimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="dayscoretimes">
+	             dayscoretimes = #dayscoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekscoretimes">
+	             weekscoretimes = #weekscoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthscoretimes">
+	             monthscoretimes = #monthscoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="scoretimes">
+	             scoretimes = #scoretimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daycommendtimes">
+	             daycommendtimes = #daycommendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekcommendtimes">
+	             weekcommendtimes = #weekcommendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthcommendtimes">
+	             monthcommendtimes = #monthcommendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="commendtimes">
+	             commendtimes = #commendtimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="daycollecttimes">
+	             daycollecttimes = #daycollecttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="weekcollecttimes">
+	             weekcollecttimes = #weekcollecttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="monthcollecttimes">
+	             monthcollecttimes = #monthcollecttimes#
+	       </isNotEmpty>
+	       <isNotEmpty prepend="AND" property="collecttimes">
+	             collecttimes = #collecttimes#
+	       </isNotEmpty>
+	    </dynamic>	
+	</sql>
+	 
+    <select id="pageSelectCount" resultClass="long">
+    <![CDATA[
+        select count(*) from osp_content_stat
+    ]]>
+		<include refid="dynamicWhere"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 #offset#,#pageSize#,#lastRows# 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="pageSelect" resultMap="ospContentStatResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_stat 
+	    ]]>
+		<include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+			</isEmpty>
+		</dynamic>
+    </select>
+
+	
+	
+	<select id="findAll" resultMap="ospContentStatResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_stat 
+	    ]]>
+	        order by 
+    </select>
+    
+    <select id="findByDynamicWhere" resultMap="ospContentStatResult">
+    	select <include refid="commonColumns"/>
+	    <![CDATA[
+	        from osp_content_stat 
+	    ]]>
+	    <include refid="dynamicWhere"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+			<isEmpty property="sortColumns">
+			</isEmpty>
+		</dynamic>
+    </select>
+</sqlMap>
