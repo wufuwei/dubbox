@@ -22,7 +22,7 @@ Dubbox adds features like RESTful remoting, Kyro/FST serialization, etc to the p
 
 * **支持基于嵌入式Tomcat的HTTP remoting体系**：基于嵌入式tomcat实现dubbo的HTTP remoting体系（即dubbo-remoting-http），用以逐步取代Dubbo中旧版本的嵌入式Jetty，可以显著的提高REST等的远程调用性能，并将Servlet API的支持从2.5升级到3.1。（注：除了REST，dubbo中的WebServices、Hessian、HTTP Invoker等协议都基于这个HTTP remoting体系）。
 
-* **升级Spring**：将dubbo中Spring由2.x升级到目前最常用的3.x版本，减少版本冲突带来的麻烦。
+* **升级Spring**：将dubbo中Spring由2.x升级到目前最常用的4.x版本，减少版本冲突带来的麻烦。
 
 * **升级ZooKeeper客户端**：将dubbo中的zookeeper客户端升级到最新的版本，以修正老版本中包含的bug。
 
