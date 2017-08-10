@@ -1,3 +1,5 @@
 wfw
+:q!
+:wq
 wfw
 
